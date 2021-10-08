@@ -11,6 +11,7 @@ class CidadeController extends Controller
 
         $subtitulo = 'Lista de Cidades';
         $cidades = ['Floresta PE','Belém PE','Petrolândia','Serra Talhada'];
-        return view('cidades',compact('subtitulo','cidades'));
+
+        return view('admin.cidade.index',compact('subtitulo','cidades'));
     }
 }
