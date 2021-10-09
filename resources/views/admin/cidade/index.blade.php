@@ -10,9 +10,9 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($cidades as $cidade)
+                @forelse ($cities as $city)
                     <tr>
-                        <td>{{ $cidade }}</td>
+                        <td>{{ $city->name }}</td>
                         <td class="right-align">Excluir - Remover</td>
                     </tr>
                 @empty
