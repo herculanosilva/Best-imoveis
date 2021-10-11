@@ -16,4 +16,9 @@ class CidadeController extends Controller
         // dd($cities);
         return view('admin.cidade.index',compact('subtitulo','cities'));
     }
+
+    public function formAdicionar(){
+        return 'formulario adicionar';
+
+    }
 }
