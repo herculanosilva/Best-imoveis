@@ -20,9 +20,10 @@
                 @endforelse
             </tbody>
         </table>
+
         {{-- botão --}}
         <div class="fixed-action-btn">
-            <a href="" class="btn-floating btn-large waves-effect waves-light red">
+            <a href="{{ route('admin.cidades.form') }}" class="btn-floating btn-large waves-effect waves-light red">
                 <i class="material-icons">add</i></a>
             </a>
         </div>
