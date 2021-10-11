@@ -20,14 +20,13 @@
                 @endforelse
             </tbody>
         </table>
-<<<<<<< Updated upstream
-=======
+
         {{-- botão --}}
         <div class="fixed-action-btn">
             <a href="{{ route('admin.cidades.form') }}" class="btn-floating btn-large waves-effect waves-light red">
                 <i class="material-icons">add</i></a>
             </a>
         </div>
->>>>>>> Stashed changes
     </section>
 @endsection
+
