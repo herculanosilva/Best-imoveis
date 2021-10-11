@@ -18,4 +18,11 @@ use App\Http\Controllers\Admin\CidadeController;
 //     return view('welcome');
 // });
 
-Route::get('/', [CidadeController::class, 'cidades']);
+// redirect
+
+Route::redirect('/', '/admin/cidades');
+
+Route::prefix('admin')->group( function(){
+    Route::get('cidades', [CidadeController::class, 'cidades']);
+    Route::get('cidades/adicionar', [CidadeController::class, 'formAdicionar']);
+});
