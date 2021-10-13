@@ -24,11 +24,15 @@ class CidadeController extends Controller
 
     public function adicionar(Request $request){
         //criar um objeto do modelo da class Cidade
-        $city = new City();
-        $city->name = $request->name;
-
+            // $city = new City();
+            // $city->name = $request->name;
         //salvando no bd
-        $city->save();
+            // $city->save();
+
+        //Pegando todos os dados enviado na requisição e atribuindo para todos os campos permitidos no fillable (model)
+        City::create(
+            $request->all()
+        );
 
         return redirect()->route('admin.cidades.listar');
     }
