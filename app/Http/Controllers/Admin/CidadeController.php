@@ -34,6 +34,9 @@ class CidadeController extends Controller
             $request->all()
         );
 
+        //guardando dados na sessão de forma de flash
+        $request->session()->flash('sucesso',"Cidade $request->name incluida com sucesso!");
+
         return redirect()->route('admin.cidades.listar');
     }
 }
