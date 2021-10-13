@@ -10,15 +10,26 @@ class CidadeController extends Controller
 {
     public function cidades(){
 
-        $subtitulo = 'Lista de Cidades';
+        $caption = 'Lista de Cidades';
         // $cidades = ['Floresta PE','Belém PE','Petrolândia','Serra Talhada'];
         $cities = City::all();
         // dd($cities);
-        return view('admin.cidade.index',compact('subtitulo','cities'));
+        return view('admin.cidade.index',compact('caption','cities'));
     }
 
     public function formAdicionar(){
-        return 'formulario adicionar';
+        return view('admin.cidade.form');
 
+    }
+
+    public function adicionar(Request $request){
+        //criar um objeto do modelo da class Cidade
+        $city = new City();
+        $city->name = $request->name;
+
+        //salvando no bd
+        $city->save();
+
+        return redirect()->route('admin.cidades.listar');
     }
 }
