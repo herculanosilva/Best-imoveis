@@ -1,10 +1,14 @@
 @extends('admin.principal')
 @section('conteudo-principal')
     <section class="section">
-        <form action="{{ route('admin.cidades.adicionar') }}" method="POST">
+        <form action="{{ $action }}" method="POST">
             @csrf
+            {{-- verificando se estamos editando --}}
+            @isset($city)
+                @method('PUT')
+            @endisset
             <div class="input-field">
-                <input type="text" name="name" id="name" value="{{old('name')}}" required autofocus>
+                <input type="text" name="name" id="name" value="{{old('name', $city->name)}}" required autofocus>
                 <label for="name">Nome</label>
                 @error('nome')
                     <span class="red-text text-accent-3"><small>{{ $message }}</small></span>

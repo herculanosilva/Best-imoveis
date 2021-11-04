@@ -14,9 +14,11 @@
                     <tr>
                         <td>{{ $city->name }}</td>
                         <td class="right-align">
-                            <span>
-                                <i class="material-icons grey-text text-darken-2">edit</i>
-                            </span>
+                            <a href="{{ route('admin.cidades.formEditar', $city->id) }}">
+                                <span>
+                                    <i class="material-icons grey-text text-darken-2">edit</i>
+                                </span>
+                            </a>
                             <form action="{{ route('admin.cidades.deletar', $city->id) }}" method="post" style="display: inline">
                                 @csrf
                                 @method('DELETE')
