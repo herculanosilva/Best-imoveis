@@ -24,7 +24,8 @@ class CidadeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|min:3|max:100|unique:cities'
+            #parametros do unique = nome da tabela, nome do campo na tabela, o que vai ser ignorado (caso seja o mesmo id)
+            'name' => "bail|required|min:3|max:100|unique:cities,name,$this->id"
         ];
     }
 }
