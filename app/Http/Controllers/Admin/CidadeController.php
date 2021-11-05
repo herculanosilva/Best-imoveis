@@ -20,7 +20,8 @@ class CidadeController extends Controller
 
     public function formAdicionar(){
 
-        return view('admin.cidade.form');
+        $action = route('admin.cidades.adicionar');
+        return view('admin.cidade.form', compact('action'));
 
     }
 
@@ -61,11 +62,11 @@ class CidadeController extends Controller
     }
 
     public function editar(CidadeRequest $request, $id){
-        $cidade = City::find($id);
-        $cidade->name = $request->name;
-        $cidade->save();
+        $city = City::find($id);
+        $city->update($request->all());
+        $city->save();
 
-        $request->session()->flash('sucesso',"Cidade salva com sucesso!");
+        $request->session()->flash('sucesso',"Cidade $request->name editado com sucesso!");
         return redirect()->route('admin.cidades.listar');
 
     }
