@@ -17,7 +17,7 @@
             </div>
 
             <div class="right-align">
-                <a href={{route('admin.cidades.listar') }} class="btn-flat waves-effect"> Cancelar</a>
+                <a href={{route('admin.city.index') }} class="btn-flat waves-effect"> Cancelar</a>
                 <button class="btn waves-effect waves-light" type="submit">Salvar</button>
             </div>
         </form>
