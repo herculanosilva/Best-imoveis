@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //https://laravel.com/docs/8.x/controllers#restful-localizing-resource-uris
+        Route::resourceVerbs([
+            'create' => 'criar',
+            'edit' => 'editar',
+        ]);
     }
 }
