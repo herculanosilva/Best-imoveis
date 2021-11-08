@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CidadeRequest;
 use App\Http\Requests\CityRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
@@ -20,7 +19,7 @@ class CityController extends Controller
         $cation = 'Lista de Cidades';
         $cities = City::all();
 
-        return view('admin.cidade.index', compact('cation','cities'));
+        return view('admin.city.index', compact('cation','cities'));
     }
 
     /**
@@ -32,7 +31,7 @@ class CityController extends Controller
     {
         //Mostra o formulário
         $action = route('admin.city.store');
-        return view('admin.cidade.form', compact('action'));
+        return view('admin.city.form', compact('action'));
     }
 
     /**
@@ -52,17 +51,6 @@ class CityController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -70,7 +58,9 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $city = City::find($id);
+        $action = route('admin.city.update', $city->id);
+        return view('admin.city.form', compact('city','action'));
     }
 
     /**
@@ -80,9 +70,14 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CityRequest $request, $id)
     {
-        //
+        $city = City::find($id);
+        $city->update($request->all());
+        $city->save();
+
+        $request->session()->flash('sucesso',"Cidade $request->name editado com sucesso!");
+        return redirect()->route('admin.city.index');
     }
 
     /**
@@ -91,8 +86,10 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        City::destroy($id);
+        $request->session()->flash('sucesso',"Cidade excluida com sucesso!");
+        return redirect()->route('admin.city.index');
     }
 }
