@@ -21,8 +21,9 @@ use App\Http\Controllers\Admin\CityController;
 
 
 // redirect
-Route::redirect('/', '/admin/cidades');
+Route::redirect('/', '/admin/city');
 
 Route::prefix('admin')->name('admin.')->group( function(){
-    Route::resource('city', CityController::class);
+    //except show - não vamos utilizar
+    Route::resource('city', CityController::class)->except(['show']);
 });
