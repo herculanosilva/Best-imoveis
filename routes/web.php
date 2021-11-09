@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\CidadeController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +24,10 @@ use App\Http\Controllers\Admin\CityController;
 Route::redirect('/', '/admin/city');
 
 Route::prefix('admin')->name('admin.')->group( function(){
-    //except show - não vamos utilizar
+    //city
     Route::resource('city', CityController::class)->except(['show']);
+    //type
+    Route::resource('type', TypeController::class)->except(['show']);
+
+
 });
