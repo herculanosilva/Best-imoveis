@@ -19,10 +19,16 @@
                 <a href="/" class="brand-logo">Best Imóveis</a>
                 <ul class="right">
                     <li>
-                        <a href="">Imóveis</a>
+                        <a href="#">Imóveis</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.city.index') }}">Cidades</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.type.index') }}">Tipo</a>
+                    </li>
+                    <li>
+                        <a href="#">Finalidade</a>
                     </li>
                 </ul>
         </div>

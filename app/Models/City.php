@@ -10,4 +10,8 @@ class City extends Model
     use HasFactory;
     //todos os campos da table que pode ser adicionado em massa
     protected $fillable = ['name'];
+
+    public function immobiles(){
+        return $this->hasMany(Immobile::class);
+    }
 }

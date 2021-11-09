@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Finality extends Model
 {
     use HasFactory;
+
+    public function immobiles(){
+        return $this->hasMany(Immobile::class);
+    }
 }
