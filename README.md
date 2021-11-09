@@ -12,5 +12,5 @@
 
 ### Pré-requisitos
 
-Ter instalado em sua máquina as seguintes ferramentas:
+Ter instalado em sua máquina:
 PHP, Composer e Postgresql.
