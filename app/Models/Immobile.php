@@ -24,4 +24,8 @@ class Immobile extends Model
     public function type(){
         return $this->belongsTo(type::class);
     }
+    //N para N
+    public function proximity(){
+        return $this->belongsToMany(Proximity::class);
+    }
 }
