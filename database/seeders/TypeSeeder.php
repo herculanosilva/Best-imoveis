@@ -16,6 +16,8 @@ class TypeSeeder extends Seeder
     {
         Type::create(['name' => 'Apartamento']);
         Type::create(['name' => 'Casa']);
+        Type::create(['name' => 'Flat']);
+        Type::create(['name' => 'Kitnet']);
         Type::create(['name' => 'Ponto Comercial']);
     }
 }

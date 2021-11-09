@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CityRequest;
+use App\Http\Requests\CityStoreRequest;
+use App\Http\Requests\CityUpdateRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CityRequest $request)
+    public function store(CityStoreRequest $request)
     {
         //Salva efetivamente os dados
         city::create($request->all());
@@ -70,7 +71,7 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CityRequest $request, $id)
+    public function update(CityUpdateRequest $request, $id)
     {
         $city = City::find($id);
         $city->update($request->all());

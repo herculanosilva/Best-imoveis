@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Proximity;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call([
+            CitySeeder::class,
             FinalitySeeder::class,
             ProximitySeeder::class,
             TypeSeeder::class

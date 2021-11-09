@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TypeRequest;
+use App\Http\Requests\TypeStoreRequest;
+use App\Http\Requests\TypeUpdateRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TypeStoreRequest $request)
     {
         Type::create($request->all());
         $request->session()->flash('sucesso',"tipo de imovel $request->name incluido com sucesso!");
@@ -64,7 +65,7 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeRequest $request, $id)
+    public function update(TypeUpdateRequest $request, $id)
     {
         $type = Type::find($id);
         $type->update($request->all());
