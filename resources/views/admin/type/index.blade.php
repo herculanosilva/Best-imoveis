@@ -1,4 +1,4 @@
-@extends('admin.principal')
+@extends('admin.layouts.principal')
 
 @section('conteudo-principal')
     <section class="section">
