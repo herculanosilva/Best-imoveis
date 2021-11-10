@@ -26,6 +26,7 @@ class Immobile extends Model
     }
     //N para N
     public function proximity(){
-        return $this->belongsToMany(Proximity::class);
+        //withTimestamps ao inserir um registro adiciona o timestamps (tabela pivo)
+        return $this->belongsToMany(Proximity::class)->withTimestamps();
     }
 }
