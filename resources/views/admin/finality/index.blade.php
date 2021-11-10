@@ -5,21 +5,21 @@
         <table class="highlight">
             <thead>
                 <tr>
-                    <th>Tipos</th>
+                    <th>Finalidades</th>
                     <th class="right-align">Opções</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($types as $type)
+                @forelse ($finalities as $finality)
                     <tr>
-                        <td>{{ $type->name }}</td>
+                        <td>{{ $finality->name }}</td>
                         <td class="right-align">
-                            <a href="{{ route('admin.type.edit', $type->id) }}">
+                            <a href="{{ route('admin.finality.edit', $finality->id) }}">
                                 <span>
                                     <i class="material-icons grey-text text-darken-2">edit</i>
                                 </span>
                             </a>
-                            <form action="{{ route('admin.type.destroy', $type->id) }}" method="post" style="display: inline">
+                            <form action="{{ route('admin.finality.destroy', $finality->id) }}" method="post" style="display: inline">
                                 @csrf
                                 @method('DELETE')
 
@@ -32,14 +32,14 @@
                         </td>
                     </tr>
                 @empty
-                    <td colspan="2">Não existe tipo de imoveis cadastrado!</td>
+                    <td colspan="2">Não existe finalidade cadastrada!</td>
                 @endforelse
             </tbody>
         </table>
 
         {{-- botão --}}
         <div class="fixed-action-btn">
-            <a href="{{ route('admin.type.create') }}" class="btn-floating btn-large waves-effect waves-light red">
+            <a href="{{ route('admin.finality.create') }}" class="btn-floating btn-large waves-effect waves-light red">
                 <i class="material-icons">add</i></a>
             </a>
         </div>

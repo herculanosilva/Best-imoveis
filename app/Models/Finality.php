@@ -9,6 +9,8 @@ class Finality extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function immobiles(){
         return $this->hasMany(Immobile::class);
     }
