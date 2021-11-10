@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TypeRequest extends FormRequest
+class FinalityUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class TypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "bail|required|min:3|max:100|unique:types,name,$this->type"
+            'name' => "bail|required|min:3|max:100|unique:finalities,name,$this->finality"
         ];
     }
 }

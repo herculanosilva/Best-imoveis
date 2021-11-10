@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\FinalityController;
 use App\Http\Controllers\Admin\TypeController;
 
 /*
@@ -15,19 +16,14 @@ use App\Http\Controllers\Admin\TypeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 // redirect
 Route::redirect('/', '/admin/city');
-
+//grupo admin
 Route::prefix('admin')->name('admin.')->group( function(){
     //city
     Route::resource('city', CityController::class)->except(['show']);
     //type
     Route::resource('type', TypeController::class)->except(['show']);
-
-
+    //finality
+    Route::resource('finality', FinalityController::class)->except(['show']);
 });

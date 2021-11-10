@@ -46,7 +46,7 @@ class CityController extends Controller
         //Salva efetivamente os dados
         city::create($request->all());
         //guardando dados na sessão de forma de flash
-        $request->session()->flash('sucesso',"Cidade $request->name incluida com sucesso!");
+        $request->session()->flash('sucesso',"Cidade $request->name foi incluida com sucesso!");
         return redirect()->route('admin.city.index');
 
     }
@@ -77,7 +77,7 @@ class CityController extends Controller
         $city->update($request->all());
         $city->save();
 
-        $request->session()->flash('sucesso',"Cidade $request->name editado com sucesso!");
+        $request->session()->flash('sucesso',"Cidade $request->name foi editado com sucesso!");
         return redirect()->route('admin.city.index');
     }
 

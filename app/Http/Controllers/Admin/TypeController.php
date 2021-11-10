@@ -41,7 +41,7 @@ class TypeController extends Controller
     public function store(TypeStoreRequest $request)
     {
         Type::create($request->all());
-        $request->session()->flash('sucesso',"tipo de imovel $request->name incluido com sucesso!");
+        $request->session()->flash('sucesso',"O tipo $request->name foi incluido com sucesso!");
         return redirect()->route('admin.type.index');
     }
 
@@ -71,7 +71,7 @@ class TypeController extends Controller
         $type->update($request->all());
         $type->save();
 
-        $request->session()->flash('sucesso', "O tipo $request->name editado com sucesso!");
+        $request->session()->flash('sucesso', "O tipo $request->name foi editado com sucesso!");
         return redirect()->route('admin.type.index');
     }
 

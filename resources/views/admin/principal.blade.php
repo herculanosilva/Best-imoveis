@@ -28,7 +28,7 @@
                         <a href="{{ route('admin.type.index') }}">Tipo</a>
                     </li>
                     <li>
-                        <a href="#">Finalidade</a>
+                        <a href="{{ route('admin.finality.index') }}">Finalidade</a>
                     </li>
                 </ul>
         </div>
