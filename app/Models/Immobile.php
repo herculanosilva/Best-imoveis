@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Immobile extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'ground',
+        'price',
+        'room',
+        'living_room',
+        'bathroom',
+        'garage',
+        'description',
+        'city_id',
+        'type_id',
+        'finality_id',
+    ];
 
     public function address(){
         return $this->hasOne(Address::class, 'immobiles_id'); //ou 'App\Models\Address' imovel tem um endereço

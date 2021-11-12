@@ -2,7 +2,7 @@
 
 @section('conteudo-principal')
     <section class="section">
-        <form action="{{ $action }}" action="POST">
+        <form action="{{ $action }}" method="POST">
             @csrf
 
             {{-- titulo --}}
@@ -66,8 +66,55 @@
                     <label for="living_room">Quantidade de salas</label>
                 </div>
             </div>
+            {{-- terreno banheiros e garagens --}}
+            <div class="row">
+                <div class="input-field col s4">
+                    <input type="number" name="bathroom" id="bathroom">
+                    <label for="bathroom">Terreno em m²</label>
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" name="room" id="room">
+                    <label for="room">Quantidade de banheiros</label>
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" name="garage" id="garage">
+                    <label for="garage">Vagas na garagem</label>
+                </div>
+            </div>
+            {{-- descrição --}}
+            <div class="row">
+              <div class="input-field col s12">
+                  <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                <label for="description">Descrição</label>
+               </div>
+            </div>
+            {{-- endereço --}}
+            <div class="row">
+                <div class="input-field col s5">
+                    <input type="text" name="street" id="street">
+                    <label for="street">Rua</label>
+                </div>
+                <div class="input-field col s2">
+                    <input type="number" name="number" id="number">
+                    <label for="number">Número</label>
+                </div>
+                <div class="input-field col s2">
+                    <input type="text" name="complement" id="complement">
+                    <label for="complement">Complemento</label>
+                </div>
+                <div class="input-field col s3">
+                    <input type="text" name="district" id="district">
+                    <label for="district">Bairo</label>
+                </div>
+            </div>
 
-
+            <div class="right-align">
+                <a href={{route('admin.immobile.index') }} class="btn-flat waves-effect"> Cancelar</a>
+                <button class="btn waves-effect waves-light" type="submit">Salvar</button>
+            </div>
         </form>
     </section>
 @endsection
+
+
+

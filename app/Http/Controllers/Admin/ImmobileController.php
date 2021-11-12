@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Finality;
+use App\Models\Immobile;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,7 @@ class ImmobileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Immobile::create($request->all());
     }
 
     /**
