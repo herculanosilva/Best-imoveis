@@ -69,12 +69,12 @@
             {{-- terreno banheiros e garagens --}}
             <div class="row">
                 <div class="input-field col s4">
-                    <input type="number" name="bathroom" id="bathroom">
-                    <label for="bathroom">Terreno em m²</label>
+                    <input type="number" name="ground" id="ground">
+                    <label for="ground">Terreno em m²</label>
                 </div>
                 <div class="input-field col s4">
-                    <input type="number" name="room" id="room">
-                    <label for="room">Quantidade de banheiros</label>
+                    <input type="number" name="bathroom" id="bathroom">
+                    <label for="bathroom">Quantidade de banheiros</label>
                 </div>
                 <div class="input-field col s4">
                     <input type="number" name="garage" id="garage">
@@ -105,6 +105,19 @@
                 <div class="input-field col s3">
                     <input type="text" name="district" id="district">
                     <label for="district">Bairo</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="proximity[]" id="proximity" multiple>
+                        <option value="" disabled>Selecione os pontos de interesses nas proximidades</option>
+
+                        @foreach ($proximities as $proximity)
+                            <option value="{{ $proximity->id }}">{{ $proximity->name }}</option>
+                        @endforeach
+                    </select>
+                    <label for="proximity">Pontos de interesses nas proximidades</label>
                 </div>
             </div>
 
