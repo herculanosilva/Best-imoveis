@@ -15,7 +15,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('street, 100'); //rua
+            $table->string('street', 100); //rua
             $table->integer('number'); //numero
             $table->string('complement'); //complemento
             $table->string('district'); //bairro

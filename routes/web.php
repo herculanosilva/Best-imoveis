@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\TypeController;
 */
 
 // redirect
-Route::redirect('/', '/admin/city');
+Route::redirect('/', '/admin/immobile');
 //grupo admin
 Route::prefix('admin')->name('admin.')->group( function(){
     //city
