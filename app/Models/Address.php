@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'street',
-        'number',
-        'complement',
-        'district',
-        'immobiles_id'];
+    protected $fillable = ['street', 'number', 'complement', 'district', 'immobiles_id'];
 
     #relacionamento Immobile (1) para (1) Address
     public function imomobile(){
