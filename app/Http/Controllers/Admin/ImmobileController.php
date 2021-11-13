@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Finality;
 use App\Models\Immobile;
-use App\Models\Proximity;
 use App\Models\Type;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ImmobileController extends Controller
 {
@@ -20,8 +18,7 @@ class ImmobileController extends Controller
      */
     public function index()
     {
-        $immobiles = Immobile::all();
-        return view('admin.immobile.index', compact('immobiles'));
+        return view('admin.immobile.index');
     }
 
     /**
@@ -34,10 +31,9 @@ class ImmobileController extends Controller
         $cities = City::all();
         $typies = Type::all();
         $finalities = Finality::all();
-        $proximities = Proximity::all();
 
         $action = route('admin.immobile.store');
-        return view('admin.Immobile.form', compact('action', 'cities', 'typies','finalities','proximities'));
+        return view('admin.Immobile.form', compact('action', 'cities', 'typies','finalities'));
     }
 
     /**
@@ -48,17 +44,7 @@ class ImmobileController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-            $immobile = Immobile::create($request->all());
-            $immobile->address()->create($request->all());
-            //verificando se há proximidade
-            if($request->has('proximity')){
-                $immobile->proximity()->sync($request->proximity); //aceita um id ou array de ids e sicroniza o imovel e associa com as proximidades
-            }
-        DB::commit();
-
-        $request->session()->flash('sucesso',"imovel foi incluido com sucesso!");
-        return view('admin.immobile.index');
+       Immobile::create($request->all());
     }
 
     /**

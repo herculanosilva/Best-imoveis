@@ -15,14 +15,14 @@ class CreateImmobilesTable extends Migration
     {
         Schema::create('immobiles', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);//titulo
+            $table->string('title, 100');//titulo
             $table->integer('ground'); //tereno
             $table->integer('living_room'); //sala de estar
             $table->integer('bathroom'); //banheiro
             $table->integer('room'); //dormitorio
             $table->integer('garage'); //garagem
             $table->text('description')->nullable(); //descrição
-            $table->decimal('price', 12, 2); //preço
+            $table->decimal('price, 12, 2'); //preço
             //chaves estrangeiras | anterior e novos maneira de fazer
             // $table->unsignedBigInteger('city_id');
             // $table->foreign('city_id')->references('id')->on('cities');
