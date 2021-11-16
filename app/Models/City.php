@@ -13,6 +13,6 @@ class City extends Model
 
     public function immobiles(){
         // relacionamento 1 - N
-        return $this->hasMany(Immobile::class);
+        return $this->hasMany(Immobile::class,'city_id');
     }
 }

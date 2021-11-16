@@ -13,6 +13,6 @@ class Proximity extends Model
 
     //N para N
     public function immobile(){
-        return $this->belongsToMany(immobile::class, 'immobile_proximity','proximity_id','immobile_id')->withTimestamps();
+        return $this->belongsToMany(immobile::class, 'immobile_proximitie','proximity_id','immobile_id')->withTimestamps();
     }
 }

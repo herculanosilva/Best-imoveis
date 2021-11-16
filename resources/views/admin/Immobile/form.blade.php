@@ -116,18 +116,20 @@
                     <label for="district">Bairo</label>
                 </div>
             </div>
-            {{-- proximidades --}}
+
+            {{-- Proximity --}}
             <div class="row">
                 <div class="input-field col s12">
-                    <select name="proximities[]" id="proximities" multiple>
-                        <option value="" disabled>Selecione os pontos de interesse na proximidade</option>
-                        @foreach ($proximities as $proximity)
-                            <option value="{{ $proximity->id }}">{{ $proximity->name }}</option>
-                        @endforeach
+                    <select multiple name="proximity[]" id="proximity">
+                        <option value="" disabled>Selecione os pontos de interesse nas aproximidades</option>
+                            @foreach ($proximities as $proximity)
+                                <option value="{{ $proximity->id }}">{{ $proximity->name }}</option>
+                            @endforeach
                     </select>
-                    <label for="proximities">Pontos de interesse na proximidade</label>
+                    <label>Pontos de Referência</label>
                 </div>
             </div>
+
             <div class="right-align">
                 <a href={{route('admin.immobile.index') }} class="btn-flat waves-effect"> Cancelar</a>
                 <button class="btn waves-effect waves-light" type="submit">Salvar</button>
