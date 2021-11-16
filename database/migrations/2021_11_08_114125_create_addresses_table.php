@@ -15,12 +15,12 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('street, 100'); //rua
+            $table->string('street', 100); //rua
             $table->integer('number'); //numero
-            $table->string('complement'); //complemento
+            $table->string('complement', 100)->nullable(); //complemento
             $table->string('district'); //bairro
             //chaves estrangeiras
-            $table->foreignId('immobiles_id')->constrained()->onDelete('cascade');
+            $table->foreignId('immobile_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Finality;
 use App\Models\Immobile;
+use App\Models\Proximity;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ImmobileController extends Controller
 {
@@ -31,9 +33,10 @@ class ImmobileController extends Controller
         $cities = City::all();
         $typies = Type::all();
         $finalities = Finality::all();
+        $proximities = Proximity::all();
 
         $action = route('admin.immobile.store');
-        return view('admin.Immobile.form', compact('action', 'cities', 'typies','finalities'));
+        return view('admin.Immobile.form', compact('action', 'cities', 'typies','finalities','proximities'));
     }
 
     /**
@@ -44,7 +47,18 @@ class ImmobileController extends Controller
      */
     public function store(Request $request)
     {
-       Immobile::create($request->all());
+        DB::beginTransaction();
+        $immobile = Immobile::create($request->all());
+        $immobile->address()->create($request->all());
+
+        if($request->has('proximities')){
+            $immobile->proximity()->sync($request->proximity);
+        }
+
+        DB::commit();
+
+        $request->session()->flash('sucesso',"imovel foi incluido com sucesso!");
+        return view('admin.Immobile.index');
     }
 
     /**

@@ -12,6 +12,7 @@ class City extends Model
     protected $fillable = ['name'];
 
     public function immobiles(){
+        // relacionamento 1 - N
         return $this->hasMany(Immobile::class);
     }
 }
