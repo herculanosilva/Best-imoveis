@@ -11,6 +11,7 @@ class Type extends Model
     protected $fillable = ['name'];
 
     public function immobiles(){
-        return $this->hasMany(Immobile::class);
+        // relacionamento 1 - N
+        return $this->hasMany(Immobile::class, 'type_id');
     }
 }
