@@ -13,9 +13,9 @@ class CreateImmobileProximityTable extends Migration
      */
     public function up()
     {
-        Schema::create('immobile_proximity', function (Blueprint $table) {
+        Schema::create('immobile_proximitie', function (Blueprint $table) {
             $table->foreignId('immobile_id')->constrained()->onDelete('cascade');
-            $table->foreignId('proximity_id')->constrained()->onDelete('cascade');
+            $table->foreignId('proximity_id')->constrained('proximities')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -26,12 +26,12 @@ class Immobile extends Model
 
     public function address(){
         //relacionamento 1 - 1
-        return $this->hasOne(Address::class, ''); //ou 'App\Models\Address' imovel tem um endereço
+        return $this->hasOne(Address::class, 'immobile_id'); //ou 'App\Models\Address' imovel tem um endereço
     }
 
     public function city(){
         //relacionamento 1 - N
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class,'city_id');
     }
 
     public function finality(){
@@ -41,12 +41,12 @@ class Immobile extends Model
 
     public function type(){
         //relacionamento 1 - N
-        return $this->belongsTo(type::class);
+        return $this->belongsTo(type::class,'type_id');
     }
     //N para N
     public function proximity(){
         //withTimestamps ao inserir um registro adiciona o timestamps (tabela pivo)
-        return $this->belongsToMany(Proximity::class, 'immobile_proximity','proximity_id','immobile_id')->withTimestamps();
+        return $this->belongsToMany(Proximity::class,'immobile_proximitie','immobile_id','proximity_id')->withTimestamps();
         //nome da tabela intermediaria (immobile_proximitie)
         // e a chave estrangeira da tabela pivot com relação ao modelo  'immobile_id'
         // e a chave estrangeira da tabela pivot com relação ao  OUTRO modelo 'proximity_id'

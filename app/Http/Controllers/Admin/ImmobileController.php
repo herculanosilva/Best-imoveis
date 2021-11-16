@@ -48,13 +48,13 @@ class ImmobileController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-        $immobile = Immobile::create($request->all());
-        $immobile->address()->create($request->all());
+            $immobile = Immobile::create($request->all());
+            $immobile->address()->create($request->all());
 
-        if($request->has('proximities')){
-            $immobile->proximity()->sync($request->proximity);
-        }
-
+            if($request->has('proximity')){
+                //relacionamento N - N
+                $immobile->proximity()->sync($request->proximity);
+            }
         DB::commit();
 
         $request->session()->flash('sucesso',"imovel foi incluido com sucesso!");
