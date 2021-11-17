@@ -20,7 +20,9 @@ class ImmobileController extends Controller
      */
     public function index()
     {
-        return view('admin.immobile.index');
+        // $immobiles = Immobile::all(); Eager Loading
+        $immobiles = Immobile::with(['city','address'])->get(); //Lazy Loading
+        return view('admin.immobile.index', compact('immobiles'));
     }
 
     /**
