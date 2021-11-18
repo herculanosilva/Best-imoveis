@@ -27,6 +27,6 @@ class CreateImmobileProximityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('immobile_proximity');
+        Schema::dropIfExists('immobile_proximitie');
     }
 }
