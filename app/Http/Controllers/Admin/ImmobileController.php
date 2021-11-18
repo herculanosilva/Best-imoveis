@@ -19,9 +19,22 @@ class ImmobileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // $immobiles = Immobile::all(); Eager Loading
-        $immobiles = Immobile::with(['city','address'])->get(); //Lazy Loading
+    {   #Eager Loading
+        //$immobiles = Immobile::all();
+
+        #Lazy Loading
+        // $immobiles = Immobile::with(['city','address'])
+        //                 ->orderBy('title','asc')
+        //                 ->get();
+
+        #join - para ordenar por dao de uma tabela relacionada
+        $immobiles = Immobile::join('cities','cities.id','=','immobiles.city_id')
+                            ->join('addresses','addresses.immobile_id','=','immobiles.id')
+                            ->orderBy('cities.name','asc')
+                            ->orderBy('addresses.district','asc')
+                            ->orderBy('title','asc')
+                            ->get();
+
         return view('admin.immobile.index', compact('immobiles'));
     }
 
@@ -38,7 +51,7 @@ class ImmobileController extends Controller
         $proximities = Proximity::all();
 
         $action = route('admin.immobile.store');
-        return view('admin.Immobile.form', compact('action', 'cities', 'typies','finalities','proximities'));
+        return view('admin.immobile.form', compact('action', 'cities', 'typies','finalities','proximities'));
     }
 
     /**
@@ -60,7 +73,7 @@ class ImmobileController extends Controller
         DB::commit();
 
         $request->session()->flash('sucesso',"imovel foi incluido com sucesso!");
-        return view('admin.Immobile.index');
+        return redirect()->route('admin.immobile.index');
     }
 
     /**
