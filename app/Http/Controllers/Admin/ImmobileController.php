@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImmobileStoreRequest;
+use App\Http\Requests\ImmobileUpdateRequest;
 use App\Models\City;
 use App\Models\Finality;
 use App\Models\Immobile;
@@ -60,7 +62,7 @@ class ImmobileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImmobileStoreRequest $request)
     {
         DB::beginTransaction();
             $immobile = Immobile::create($request->all());
@@ -105,7 +107,7 @@ class ImmobileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ImmobileUpdateRequest $request, $id)
     {
         //
     }
