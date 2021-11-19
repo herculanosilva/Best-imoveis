@@ -42,4 +42,36 @@ class ImmobileStoreRequest extends FormRequest
             'proximity' => 'bail|nullable|array'
         ];
     }
+
+    /**
+     * Customizando o nome dos campos na mensagens de erros
+     */
+    public function attributes()
+    {
+        return [
+            'city_id' => 'cidade',
+            'type_id' => 'tipo',
+            'finality_id' => 'finalidade',
+            'price' => 'preço',
+            'room' => 'quantidade de dormitórios',
+            'living_room' => 'quantidade de salas',
+            'ground' => 'terreno em m²',
+            'bathroom' => 'quantidade de banheiros',
+            'garage' => 'vagas na garagem',
+            'complement' => 'complemento',
+            'district' => 'bairo',
+            'proximity' => 'pontos de referência'
+        ];
+    }
+
+    /**
+     * Customizando as mensagens de erros para um campo ou regra
+     */
+    public function messages()
+    {
+        return
+        [
+            'finality_id.required' => 'Selecionar uma opção.'
+        ];
+    }
 }
