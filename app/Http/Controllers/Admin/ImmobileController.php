@@ -118,8 +118,17 @@ class ImmobileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        $immobile = Immobile::find($id);
+        //removendo o endereço | busca o endereço associado ao imovel e remove
+        $immobile->address->delete();
+        //removendo o imovel | objeto que representa o imovel
+        $immobile->delete();
+        DB::commit();
+
+        $request->session()->flash('sucesso',"Imovel incluído com sucesso!");
+        return redirect()->route('admin.immobile.index');
     }
 }
