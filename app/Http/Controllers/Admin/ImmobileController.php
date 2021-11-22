@@ -88,7 +88,9 @@ class ImmobileController extends Controller
      */
     public function show($id)
     {
-        //
+        //indo o bd e pegando os dados relacionados ao imovel. Eager Loading
+        $immobile = Immobile::with(['city','address','finality','type','proximity'])->find($id);
+        return view('admin.immobile.show', compact('immobile'));
     }
 
     /**
