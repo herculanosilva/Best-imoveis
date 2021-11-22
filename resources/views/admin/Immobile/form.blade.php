@@ -3,10 +3,9 @@
 @section('conteudo-principal')
     <section class="section">
         <form action="{{ $action }}" method="POST">
-
             {{-- verificando se ha dados em immobile, se sim, estamos editando logo o method é Put --}}
             @isset($immobile)
-            @method('PUT')
+                @method('PUT')
             @endisset
 
             @csrf
@@ -142,7 +141,7 @@
 
             {{-- Número --}}
                 <div class="input-field col s2">
-                    <input type="number" name="number" id="number" value="{{ old('number', $immobile->address->number) }}">
+                    <input type="number" name="number" id="number" value="{{ old('number', $immobile->address->number ?? '') }}">
                     <label for="number">Número</label>
                     @error('number')
                         <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
