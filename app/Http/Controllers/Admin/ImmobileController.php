@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImmobileStoreRequest;
 use App\Http\Requests\ImmobileUpdateRequest;
+use App\Models\Address;
 use App\Models\City;
 use App\Models\Finality;
 use App\Models\Immobile;
@@ -66,6 +67,7 @@ class ImmobileController extends Controller
     {
         DB::beginTransaction();
             $immobile = Immobile::create($request->all());
+            //create usa o metodo do relacionamento address()
             $immobile->address()->create($request->all());
 
             if($request->has('proximity')){
@@ -97,11 +99,21 @@ class ImmobileController extends Controller
      */
     public function edit($id)
     {
-        //
+        //indo o bd e pegando os dados relacionados ao imovel. Eager Loading
+        $immobile = Immobile::with(['city','address','finality','type','proximity'])->find($id);
+
+        $cities = City::all();
+        $typies = Type::all();
+        $finalities = Finality::all();
+        $proximities = Proximity::all();
+
+        $action = route('admin.immobile.update', $immobile->id);
+
+        return view('admin.immobile.form', compact('cities','typies','finalities','proximities','action','immobile'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * district the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -109,7 +121,22 @@ class ImmobileController extends Controller
      */
     public function update(ImmobileUpdateRequest $request, $id)
     {
-        //
+        $immobile = Immobile::find($id);
+
+        DB::beginTransaction();
+        $immobile->update($request->all());
+        //update usa o address retornando o valor, pois há dados associado
+        $immobile->address->update($request->all());
+
+        if($request->has('proximity')){
+            //relacionamento N - N
+            $immobile->proximity()->sync($request->proximity);
+        }
+        DB::commit();
+
+        $request->session()->flash('sucesso',"imovel foi atualizado com sucesso!");
+        return redirect()->route('admin.immobile.index');
+
     }
 
     /**
