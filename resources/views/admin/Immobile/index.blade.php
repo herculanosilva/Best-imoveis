@@ -8,7 +8,7 @@
                 <th>Cidade</th>
                 <th>Bairro</th>
                 <th>titulo</th>
-                <th>Opções</th>
+                <th class="right-align">Opções</th>
             </tr>
         </thead>
         <tbody>
@@ -18,12 +18,20 @@
                     <td>{{ $immobile->address->district }}</td>
                     <td>{{ $immobile->title }}</td>
                     <td class="right-align">
-                        <a href="{{ route('admin.immobile.edit', $immobile->id) }}">
+                        {{-- visualizar --}}
+                        <a href="{{ route('admin.immobile.show', $immobile->id) }}" title="Ver">
+                            <span>
+                                <i class="material-icons indigo-text text-darken-2">remove_red_eye</i>
+                            </span>
+                        </a>
+                        {{-- editar --}}
+                        <a href="{{ route('admin.immobile.edit', $immobile->id) }}" title="Editar">
                             <span>
                                 <i class="material-icons grey-text text-darken-2">edit</i>
                             </span>
                         </a>
-                        <form action="{{ route('admin.immobile.destroy', $immobile->id) }}" method="post" style="display: inline">
+                        {{-- excluir --}}
+                        <form action="{{ route('admin.immobile.destroy', $immobile->id) }}" method="post" style="display: inline" title="Excluir">
                             @csrf
                             @method('DELETE')
 
