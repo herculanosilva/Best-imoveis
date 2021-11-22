@@ -3,12 +3,13 @@
 @section('conteudo-principal')
     <section class="section">
         <form action="{{ $action }}" method="POST">
-            @csrf
 
             {{-- verificando se ha dados em immobile, se sim, estamos editando logo o method é Put --}}
             @isset($immobile)
-                @method('PUT')
+            @method('PUT')
             @endisset
+
+            @csrf
 
             {{-- titulo --}}
             <div class="row">
