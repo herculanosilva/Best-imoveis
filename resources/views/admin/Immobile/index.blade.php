@@ -7,7 +7,8 @@
             <tr>
                 <th>Cidade</th>
                 <th>Bairro</th>
-                <th>titulo</th>
+                <th>Titulo</th>
+                <th>Ultima alteração</th>
                 <th class="right-align">Opções</th>
             </tr>
         </thead>
@@ -17,7 +18,14 @@
                     <td>{{ $immobile->city->name }}</td>
                     <td>{{ $immobile->address->district }}</td>
                     <td>{{ $immobile->title }}</td>
+                    <td>{{ $immobile->updated_at->format('H:i d-m-Y ') }}</td>
                     <td class="right-align">
+                        {{-- visualizar --}}
+                        <a href="{{ route('admin.immobile.photos.index', $immobile->id) }}" title="Foto">
+                            <span>
+                                <i class="material-icons green-text text-lighten-1">insert_photo</i>
+                            </span>
+                        </a>
                         {{-- visualizar --}}
                         <a href="{{ route('admin.immobile.show', $immobile->id) }}" title="Ver">
                             <span>
