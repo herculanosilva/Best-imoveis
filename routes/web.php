@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\FinalityController;
 use App\Http\Controllers\Admin\ImmobileController;
+use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\TypeController;
 
 /*
@@ -29,4 +30,7 @@ Route::prefix('admin')->name('admin.')->group( function(){
     Route::resource('finality', FinalityController::class)->except(['show']);
     //Immobile
     Route::resource('immobile', ImmobileController::class);
+    // Photo
+    #Nested Resources  immobile/1/photo/???
+    Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
 });
