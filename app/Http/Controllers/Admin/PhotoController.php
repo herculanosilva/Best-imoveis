@@ -14,10 +14,10 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($immobileId)
+    public function index($idImobille)
     {
-        $immobile = Immobile::find($immobileId);
-        $photos = Photo::where('immobileId', $immobileId)->get();
+        $immobile = Immobile::find($idImobille);
+        $photos = Photo::where('immobile_id', $idImobille)->get();
 
         return view('admin.immobile.photo.index', compact('immobile','photos'));
     }
@@ -27,9 +27,9 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($immobileId)
+    public function create($idImobille)
     {
-        $immobile = Immobile::find($immobileId);
+        $immobile = Immobile::find($idImobille);
         return view('admin.immobile.photo.form', compact('immobile'));
     }
 
@@ -39,27 +39,30 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $immobileId)
+    public function store(Request $request, $idImobille)
     {
         //verificando se há foto (nome do input)
         if($request->hasFile('photo')){
             //verificando se houve erro no upload da foto
             if($request->photo->isValid()){
                 //armazenando o arquivo no disco publico e retornando a url (caminho) do arquivo
-                $photoURL = $request->photo->store("immobiles/$immobileId",'public');
+                $photoURL = $request->photo->store("immobiles/$idImobille",'public');
                 //store "requisição" metodo comunica-se com o file store do Laravel e armazena
                 //'local','disco'
 
                 //armazenando o caminho no bd
-                $photoURL = new Photo();
+                $photo = new Photo();
                 $photo->url = $photoURL;
-                $photo->immobile_id = $immobileId;
-
-                return view('admin.immobile.photo.index', compact(''));
+                // chave extrangeira recebe o id o imovel
+                $photo->immobile_id = $idImobille;
+                $photo->save();
 
             }
         }
-        dd('upload ok?');
+
+        $request->session()->flash('sucesso','Foto incluida com sucesso');
+
+        return redirect()->route('admin.immobile.photos.index', $idImobille);
 
     }
 

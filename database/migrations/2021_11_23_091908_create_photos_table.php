@@ -16,6 +16,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('url', 255);
+            // 1 para N
             $table->foreignId('immobile_id')->constrained('immobiles')->onDelete('cascade');
             $table->timestamps();
         });

@@ -8,7 +8,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <!-- import css public photo-->
+    <link rel="stylesheet" href="{{ asset('css/fotos.css')}}">
     <title>Best Imoveis</title>
 </head>
 <body>
