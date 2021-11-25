@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PhotoStoreRequest;
 use App\Models\Immobile;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $idImmobile)
+    public function store(PhotoStoreRequest $request, $idImmobile)
     {
         //verificando se há foto (nome do input)
         if($request->hasFile('photo')){
