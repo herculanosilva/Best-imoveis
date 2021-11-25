@@ -21,7 +21,7 @@ class ImmobileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   #Eager Loading
         //$immobiles = Immobile::all();
 
@@ -35,10 +35,26 @@ class ImmobileController extends Controller
                             ->join('addresses','addresses.immobile_id','=','immobiles.id')
                             ->orderBy('cities.name','asc')
                             ->orderBy('addresses.district','asc')
-                            ->orderBy('title','asc')
-                            ->get();
+                            ->orderBy('title','asc');
 
-        return view('admin.immobile.index', compact('immobiles'));
+        $city_id = $request->city_id;
+        $title = $request->title;
+
+        //Filtro de cidade
+        if($request->city_id){
+            $immobiles->where('city_id', $city_id);
+        }
+        //Filtro de title
+        if($request->title){
+            $immobiles->where('title','like',"%$title%");
+        }
+
+        // pegando os dados retornados a parti da execução da query
+        $immobiles = $immobiles->get();
+
+        $cities = City::orderBy('name')->get();
+
+        return view('admin.immobile.index', compact('immobiles','cities','title','city_id'));
     }
 
     /**
