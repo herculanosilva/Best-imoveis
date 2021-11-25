@@ -78,8 +78,17 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $idImmobile, $idPhoto)
     {
-        //
+        $photo = Photo::find($idPhoto);
+
+        //Apagando a imagem no disco
+        Storage::disk('public')->delete($photo->url);
+
+        //Apagando o registro no bando de dados
+        $photo->delete();
+
+        $request->session()->flash('sucesso','Foto excluida com sucesso');
+        return redirect()->route('admin.immobile.photos.index', $idImmobile);
     }
 }
