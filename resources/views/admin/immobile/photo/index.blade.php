@@ -6,6 +6,17 @@
         <div class="flex-container">
             @forelse ($photos as $photo)
                 <div class="flex-item">
+                    <span class="btn-closed">
+                        <form action="{{ route('admin.immobile.photos.destroy', [$immobile->id, $photo->id]) }}" method="post" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button style="border:0; background:trasparent;" type="submit" title="remover">
+                                <span style="cursor: pointer">
+                                    <i class="material-icons red-text text-accent-3">delete_forever</i>
+                                </span>
+                            </button>
+                         </form>
+                    </span>
                     <img src="{{ asset("storage/$photo->url") }}" width="200" height="200" title="{{ $immobile->title }}">
                 </div>
             @empty
