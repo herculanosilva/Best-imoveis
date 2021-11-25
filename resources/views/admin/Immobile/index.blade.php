@@ -86,7 +86,10 @@
             @endforelse
         </tbody>
     </table>
-
+    {{-- paginação --}}
+    <div class="center">
+        {{ $immobiles->links('admin.shared.pagination')}}
+    </div>
     <section class="section">
         {{-- botão --}}
         <div class="fixed-action-btn">

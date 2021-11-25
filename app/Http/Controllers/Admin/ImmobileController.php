@@ -49,8 +49,8 @@ class ImmobileController extends Controller
             $immobiles->where('title','like',"%$title%");
         }
 
-        // pegando os dados retornados a parti da execução da query
-        $immobiles = $immobiles->get();
+        // pegando os dados retornados a parti da execução da query | withQueryString tudo que ja estava no link vai ser mantido
+        $immobiles = $immobiles->paginate(env('PAGINATION'))->withQueryString();
 
         $cities = City::orderBy('name')->get();
 
