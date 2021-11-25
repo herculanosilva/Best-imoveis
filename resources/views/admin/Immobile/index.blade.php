@@ -1,6 +1,34 @@
 @extends('admin.layouts.principal')
 
 @section('conteudo-principal')
+    {{-- filtro de imoveis --}}
+    <section class="section">
+        <form action="{{ route('admin.immobile.index') }}" method="get">
+            <div class="row valign-wrapper">
+                <div class="input-field col s6">
+                    <select name="city_id" id="city">
+                        <option value="">Secione uma cidade</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->id }}" {{ $city->id == $city_id ? 'selected' : ''}}>{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" name="title" id="title" value="{{ $title }}">
+                    <label for="title">Titulo</label>
+                </div>
+            </div>
+            {{-- botão pesquisar --}}
+            <div class="row right-align">
+                <a href="{{ route('admin.immobile.index') }}" class="btn-flat waves-effect">Exibir todos</a>
+                <button type="submit" class="btn waves-effect waves-alight">Pesquisar</button>
+            </div>
+        </form>
+    </section>
+
+    <hr>
+
+    <section class="section">
 
     <table class="highlight">
         <thead>
@@ -53,7 +81,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Não existem imoveis cadastrado!</td>
+                    <td colspan="4">Não existem imoveis cadastrado ou que atenda aos criterios de pesquisa!</td>
                 </tr>
             @endforelse
         </tbody>
@@ -68,3 +96,4 @@
         </div>
     </section>
 @endsection
+</section>
