@@ -32,6 +32,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function(){
+            //slider
             var sliders = document.querySelectorAll('.slider');
             M.Slider.init(sliders, {
                 // indicatos
@@ -39,6 +40,9 @@
                 height:400,
                 interval: 5000
             });
+            // material box
+            var boxes = document.querySelectorAll('.materialboxed');
+            M.Materialbox.init(boxes);
         });
     </script>
 </body>
