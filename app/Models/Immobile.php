@@ -50,7 +50,9 @@ class Immobile extends Model
         //nome da tabela intermediaria (immobile_proximitie)
         // e a chave estrangeira da tabela pivot com relação ao modelo  'immobile_id'
         // e a chave estrangeira da tabela pivot com relação ao  OUTRO modelo 'proximity_id'
-
-
+    }
+    //1 para N
+    public function photo(){
+        return $this->hasMany(Photo::class);
     }
 }
