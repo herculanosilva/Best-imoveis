@@ -19,4 +19,10 @@ class ImmobileController extends Controller
 
         return view('site.city.immobile.index', compact('city','immobiles'));
     }
+    public function show($IdCity, $idImmobile){
+
+        $immobile = immobile::find($idImmobile);
+
+        return view('site.city.immobile.show', compact('immobile'));
+    }
 }
