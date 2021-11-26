@@ -19,7 +19,8 @@ use App\Http\Controllers\Admin\TypeController;
 */
 
 // redirect
-Route::redirect('/', '/admin/immobile');
+// Route::redirect('/', '/admin/immobile');
+
 //grupo admin
 Route::prefix('admin')->name('admin.')->group( function(){
     //city
@@ -34,3 +35,7 @@ Route::prefix('admin')->name('admin.')->group( function(){
     #Nested Resources  immobile/1/photo/???
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
 });
+// Site
+route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
+route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
+
