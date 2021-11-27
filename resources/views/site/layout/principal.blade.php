@@ -12,10 +12,18 @@
 </head>
 <body>
     {{-- menu topo --}}
-    <nav>
+    {{-- <nav>
         <div class="container">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo center">Best Imóveis</a>
+        </div>
+    </nav> --}}
+    <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">Best Imóveis</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{{ route('admin.immobile.index') }}">Login</a></li>
+          </ul>
         </div>
     </nav>
 
