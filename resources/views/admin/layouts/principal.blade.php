@@ -31,7 +31,14 @@
                     <li>
                         <a href="{{ route('admin.finality.index') }}">Finalidade</a>
                     </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" id="logoutForm" style="display: inline">
+                            @csrf
+                            <a href="#" type="" class="" onclick="document.getElementById('logoutForm').submit()">Sair</a>
+                        </form>
+                    </li>
                 </ul>
+            </div>
         </div>
     </nav>
 
