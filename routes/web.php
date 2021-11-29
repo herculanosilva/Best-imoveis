@@ -39,4 +39,7 @@ Route::prefix('admin')->name('admin.')->group( function(){
     Route::resource('immobile.photos', PhotoController::class)->middleware('auth')->except(['show','edit','update']);
 });
 
-require __DIR__.'/auth.php';
+Route::get('/login',function() {
+    return view('auth.login');
+});
+

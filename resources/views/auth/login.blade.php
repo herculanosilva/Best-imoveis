@@ -1,48 +1,58 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
-        <!-- Session Status -->
-        {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
+@extends('auth.layout.principal')
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+@section('conteudo-principal')
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+<section class="section">
+    <form action="" method="get">
+        <div class="row valign-wrapper">
+            <div class="row">
+                <form action="{{ 'LoginController.authenticate' }}" class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="name" type="text">
+                      <label for="name">Nome</label>
+                    </div>
+                  </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="email" type="email">
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="password" type="password">
+                      <label for="password">Senha</label>
+                    </div>
+                  </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="password" type="password">
+                      <label for="password">Confirmar Senha</label>
+                    </div>
+                  </div>
 
-                <x-button class="ml-3">
-                    {{ __('Login') }}
-                </x-button>
-            </div>
-        </form>
+                  <div class="row">
+                        <div class="row right-align">
+                            <a href="" class="btn-flat waves-effect">Não tem conta? registra-se</a>
+                            <button type="submit" class="btn waves-effect waves-alight">ENTRAR</button>
+                        </div>
+                  </div>
+                </form>
+              </div>
+        </div>
+    </form>
+</section>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-    </x-auth-card>
-</x-guest-layout>
+
+
+@endsection
+
+
+{{-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> --}}
+
