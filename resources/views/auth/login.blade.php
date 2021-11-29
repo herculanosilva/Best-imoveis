@@ -1,3 +1,4 @@
+
 @extends('auth.layout.principal')
 
 @section('conteudo-principal')
@@ -54,3 +55,4 @@
 
 
 {{-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> --}}
+

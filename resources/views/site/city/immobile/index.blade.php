@@ -24,9 +24,14 @@
                         Preço: <strong>{{ $immobile->price }}</strong>
                     </p>
                 </div>
+                <div class="card-action">
+                    <a href="{{ route('city.immobile.show', [$city->id, $immobile->id]) }}" class="green-text">Ver detalhes</a>
+                </div>
             </div>
         @empty
-            <p>Não existem imóveis disponíveis nessa cidade no momento!</p>
+            <div class="center">
+                <p>Não existem imóveis disponíveis nessa cidade no momento!</p>
+            </div>
         @endforelse
     </div>
     <div class="center">

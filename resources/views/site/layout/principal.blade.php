@@ -12,10 +12,18 @@
 </head>
 <body>
     {{-- menu topo --}}
-    <nav>
+    {{-- <nav>
         <div class="container">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo center">Best Imóveis</a>
+        </div>
+    </nav> --}}
+    <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">Best Imóveis</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/login">Login</a></li>
+          </ul>
         </div>
     </nav>
 
@@ -32,6 +40,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function(){
+            //slider
             var sliders = document.querySelectorAll('.slider');
             M.Slider.init(sliders, {
                 // indicatos
@@ -39,6 +48,9 @@
                 height:400,
                 interval: 5000
             });
+            // material box
+            var boxes = document.querySelectorAll('.materialboxed');
+            M.Materialbox.init(boxes);
         });
     </script>
 </body>
