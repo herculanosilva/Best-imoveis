@@ -19,6 +19,7 @@ class CreatePhotosTable extends Migration
             // 1 para N
             $table->foreignId('immobile_id')->constrained('immobiles')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

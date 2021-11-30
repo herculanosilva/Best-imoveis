@@ -22,6 +22,7 @@ class CreateAddressesTable extends Migration
             //chaves estrangeiras
             $table->foreignId('immobile_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

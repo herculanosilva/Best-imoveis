@@ -30,6 +30,7 @@ class CreateImmobilesTable extends Migration
             $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
             $table->foreignId('finality_id')->constrained('finalities')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
