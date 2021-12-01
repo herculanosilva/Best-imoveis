@@ -40,6 +40,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
         //type
         Route::get('typies/export/', 'App\Http\Controllers\Admin\TypeController@export')->name('typies.xlsx');
+        //finality
+        Route::get('finalities/export/', 'App\Http\Controllers\Admin\FinalityController@export')->name('finalities.xlsx');
 
 });
 // Site

@@ -91,6 +91,6 @@ class TypeController extends Controller
     }
 
     public function export(){
-        return Excel::download(new TypiesExport, 'tipo.xlsx');
+        return Excel::download(new TypiesExport, 'Tipo.xlsx');
     }
 }

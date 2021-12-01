@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\FinalitiesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FinalityStoreRequest;
 use App\Http\Requests\FinalityUpdateRequest;
@@ -87,5 +88,9 @@ class FinalityController extends Controller
         Finality::destroy($id);
         $request->session()->flash('sucesso','A finalidade de imovel excluido com sucesso!');
         return redirect()->route('admin.finality.index');
+    }
+
+    public function export(){
+        return Excel::download(new FinalitiesExport, 'Finalidade.xlsx');
     }
 }
