@@ -42,9 +42,18 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('typies/export/', 'App\Http\Controllers\Admin\TypeController@export')->name('typies.xlsx');
         //finality
         Route::get('finalities/export/', 'App\Http\Controllers\Admin\FinalityController@export')->name('finalities.xlsx');
+        //immobile
+        Route::get('immobiles/export/', 'App\Http\Controllers\Admin\ImmobileController@export')->name('immobiles.xlsx');
 
 });
 // Site
 route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
 route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
 
+
+
+// //Exports exemple
+// Route::get('company/exporttopdf/{search?}','App\Http\Controllers\ExpotsController@CompanyPDF')
+//     ->name('company.exporttopdf')->where('search', '.*');
+// Route::get('company/exporttoexcel/{search?}','App\Http\Controllers\ExpotsController@CompanySpreadsheet')
+//     ->name('company.exporttoexcel')->where('search', '.*');

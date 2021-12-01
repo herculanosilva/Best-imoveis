@@ -30,7 +30,7 @@ class TypiesExport implements FromCollection, WithHeadings, WithMapping
         [
             $linha->id,
             $linha->name,
-            date('d/m/Y', strtotime($linha->updated_at)),
+            date('H:i d/m/Y', strtotime($linha->updated_at)),
         ];
     }
 }
