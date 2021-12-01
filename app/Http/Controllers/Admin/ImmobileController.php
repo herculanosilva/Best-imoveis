@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ImmobilesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImmobileStoreRequest;
 use App\Http\Requests\ImmobileUpdateRequest;
@@ -13,6 +14,7 @@ use App\Models\Proximity;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImmobileController extends Controller
 {
@@ -176,4 +178,14 @@ class ImmobileController extends Controller
         $request->session()->flash('sucesso',"Imovel incluído com sucesso!");
         return redirect()->route('admin.immobile.index');
     }
+
+    public function export(){
+        return Excel::download(new ImmobilesExport, 'Imoveis.xlsx');
+    }
+
+    // public function UserSpreadsheet(Request $request)
+    // {
+    //     return Excel::download(new UserExport($request->search), 'Lista_de_Usuários.xlsx');
+    // }
+
 }
