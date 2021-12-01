@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\TypiesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TypeStoreRequest;
 use App\Http\Requests\TypeUpdateRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TypeController extends Controller
 {
@@ -86,5 +88,9 @@ class TypeController extends Controller
         Type::destroy($id);
         $request->session()->flash('sucesso', "Tipo de imovel excluido com sucesso!");
         return redirect()->route('admin.type.index');
+    }
+
+    public function export(){
+        return Excel::download(new TypiesExport, 'tipo.xlsx');
     }
 }
