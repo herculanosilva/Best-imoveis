@@ -35,10 +35,13 @@ Route::prefix('admin')->name('admin.')->group( function(){
     #Nested Resources  immobile/1/photo/???
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
 
-    //export excel
-    // Route::get('cities/export', 'CityController@export')->name('cities.export');
-
-    Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
+        #Export excel
+        //city
+        Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
+        //type
+        Route::get('typies/export/', 'App\Http\Controllers\Admin\TypeController@export')->name('typies.xlsx');
+        //finality
+        Route::get('finalities/export/', 'App\Http\Controllers\Admin\FinalityController@export')->name('finalities.xlsx');
 
 });
 // Site

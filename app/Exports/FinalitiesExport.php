@@ -2,34 +2,35 @@
 
 namespace App\Exports;
 
-use App\Models\City;
+use App\Models\Finality;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class CitiesExport implements FromCollection, WithHeadings, WithMapping
+class FinalitiesExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return City::all();
+        return Finality::all();
     }
 
     public function headings():array{
         return [
-                'ID',
-                'Cidade',
-                'Ultima atualização',
-            ];
+            'ID',
+            'Finalidade do imóvel',
+            'Ultima atualização',
+        ];
     }
 
     public function map($linha):array{
-        return[
+        return [
             $linha->id,
             $linha->name,
             date('d/m/Y', strtotime($linha->updated_at)),
+
         ];
     }
 }

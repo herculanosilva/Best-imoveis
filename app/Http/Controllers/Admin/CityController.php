@@ -98,6 +98,6 @@ class CityController extends Controller
 
     public function export()
     {
-        return Excel::download(new CitiesExport, 'cidades.xlsx');
+        return Excel::download(new CitiesExport, 'Cidades.xlsx');
     }
 }

@@ -2,6 +2,11 @@
 
 @section('conteudo-principal')
     <section class="section">
+        {{-- exports --}}
+        <div class="right-align">
+            <a href="{{ route('admin.typies.xlsx') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
+            <a href="" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
+        </div>
         <table class="highlight">
             <thead>
                 <tr>
