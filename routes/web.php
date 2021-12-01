@@ -34,6 +34,12 @@ Route::prefix('admin')->name('admin.')->group( function(){
     // Photo
     #Nested Resources  immobile/1/photo/???
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
+
+    //export excel
+    // Route::get('cities/export', 'CityController@export')->name('cities.export');
+
+    Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
+
 });
 // Site
 route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');

@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
-        "lucascudo/laravel-pt-br-localization": "^1.1"
+        "lucascudo/laravel-pt-br-localization": "^1.1",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
