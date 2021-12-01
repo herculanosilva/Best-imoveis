@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\CitiesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CityStoreRequest;
 use App\Http\Requests\CityUpdateRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CityController extends Controller
 {
@@ -92,5 +94,10 @@ class CityController extends Controller
         City::destroy($id);
         $request->session()->flash('sucesso',"Cidade excluida com sucesso!");
         return redirect()->route('admin.city.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new CitiesExport, 'cidades.xlsx');
     }
 }
