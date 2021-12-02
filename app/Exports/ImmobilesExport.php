@@ -43,7 +43,6 @@ class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
     }
 
     public function map($linha):array{
-        // dd($linha);
         return [
             $linha->id,
             $linha->title,
