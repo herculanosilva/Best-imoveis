@@ -14,21 +14,21 @@ class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
     */
     public function collection()
     {
-        // return Immobile::with(['proximity','type','finality','address','city'])->get();
-        $teste = Immobile::with(['proximity','type','finality','address','city'])->get();
-        dd($teste);
+        return Immobile::with(['proximity','type','finality','address','city'])->get();
+        // $teste = Immobile::with(['proximity','type','finality','address','city'])->get();
+        // dd($teste);
 
     }
 
     public function headings():array{
         return [
             'ID',
-            'Titulo',
-            'Terreno m²',
-            'Sala',
-            'Banheiro',
-            'Dormitórios',
-            'Garagem',
+            'Título',
+            'Terreno M²',
+            'Nº Salas',
+            'Nº Banheiro',
+            'Nº Dormitórios',
+            'Nº Garagem',
             'Descrição',
             'Preço',
             'Cidade',
@@ -36,7 +36,6 @@ class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
             'Numero',
             'Bairro',
             'Complemento',
-            'Endereço',
             'Tipo',
             'Finalidade',
             'Ultima atualização',
