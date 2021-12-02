@@ -15,6 +15,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class ImmobileController extends Controller
 {
@@ -183,9 +184,13 @@ class ImmobileController extends Controller
         return Excel::download(new ImmobilesExport, 'Imoveis.xlsx');
     }
 
-    // public function UserSpreadsheet(Request $request)
-    // {
-    //     return Excel::download(new UserExport($request->search), 'Lista_de_Usuários.xlsx');
-    // }
+    public function exporttopdf()
+    {
+        $immobiles = Immobile::with(['proximity','type','finality','address','city'])->get();
+
+        $pdf = PDF::loadView('admin.immobile.pdf', ['immobiles' => $immobiles]);
+        $pdf->setPaper('a4', 'landscape');
+        return $pdf->download('Imoveis.pdf');
+    }
 
 }

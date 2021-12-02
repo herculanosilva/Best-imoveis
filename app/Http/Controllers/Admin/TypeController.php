@@ -9,6 +9,7 @@ use App\Http\Requests\TypeUpdateRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class TypeController extends Controller
 {
@@ -92,5 +93,12 @@ class TypeController extends Controller
 
     public function export(){
         return Excel::download(new TypiesExport, 'Tipo.xlsx');
+    }
+
+    public function exporttopdf()
+    {
+        $typies = Type::all();
+        $pdf = PDF::loadView('admin.type.pdf', ['typies' => $typies]);
+        return $pdf->download('Tipos.pdf');
     }
 }

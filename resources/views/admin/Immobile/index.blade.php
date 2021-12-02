@@ -4,8 +4,8 @@
 <br>
 {{-- exports --}}
 <div class="right-align">
+    <a href="{{ route('admin.immobiles.pdf') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
     <a href="{{ route('admin.immobiles.xlsx') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
-    <a href="" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
 </div>
     {{-- filtro de imoveis --}}
     <section class="section">
