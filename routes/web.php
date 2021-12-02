@@ -67,3 +67,7 @@ Route::prefix('admin')->name('admin.')->group( function(){
 //     ->name('company.exporttopdf')->where('search', '.*');
 // Route::get('company/exporttoexcel/{search?}','App\Http\Controllers\ExpotsController@CompanySpreadsheet')
 //     ->name('company.exporttoexcel')->where('search', '.*');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
