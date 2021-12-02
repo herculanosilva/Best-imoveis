@@ -9,6 +9,8 @@ use App\Http\Requests\CityUpdateRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+// use Barryvdh\DomPDF\Facade\PDF;
+use PDF;
 
 class CityController extends Controller
 {
@@ -99,5 +101,12 @@ class CityController extends Controller
     public function export()
     {
         return Excel::download(new CitiesExport, 'Cidades.xlsx');
+    }
+
+    public function exporttopdf()
+    {
+        $cities = City::all();
+        $pdf = PDF::loadView('admin.city.pdf', ['cities' => $cities]);
+        return $pdf->download('Cidades.pdf');
     }
 }

@@ -15,8 +15,6 @@ class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         return Immobile::with(['proximity','type','finality','address','city'])->get();
-        // $teste = Immobile::with(['proximity','type','finality','address','city'])->get();
-        // dd($teste);
 
     }
 

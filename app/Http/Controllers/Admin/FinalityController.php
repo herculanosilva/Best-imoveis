@@ -9,6 +9,7 @@ use App\Http\Requests\FinalityUpdateRequest;
 use App\Models\Finality;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class FinalityController extends Controller
 {
@@ -92,5 +93,12 @@ class FinalityController extends Controller
 
     public function export(){
         return Excel::download(new FinalitiesExport, 'Finalidade.xlsx');
+    }
+
+    public function exporttopdf()
+    {
+        $finalities = Finality::all();
+        $pdf = PDF::loadView('admin.finality.pdf', ['finalities' => $finalities]);
+        return $pdf->download('Finalidades.pdf');
     }
 }
