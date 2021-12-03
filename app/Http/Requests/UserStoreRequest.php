@@ -25,8 +25,16 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|min:3|max:255',
-            'email' => 'bail|required|email',
+            'email' => 'bail|required|email|unique:users',
             'password' => 'bail|required|min:8|max:20',
+        ];
+    }
+
+    public function messages()
+    {
+        return
+        [
+            'email.unique' => 'Esse email já está em uso.'
         ];
     }
 }
