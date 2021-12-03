@@ -4,7 +4,7 @@
         <form action="{{ $action }}" method="POST">
             @csrf
             {{-- verificando se estamos editando --}}
-            @isset($users)
+            @isset($user)
                 @method('PUT')
             @endisset
             <div class="row">
