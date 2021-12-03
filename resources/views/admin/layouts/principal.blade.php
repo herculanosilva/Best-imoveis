@@ -13,12 +13,12 @@
     <title>Best Imoveis</title>
 </head>
 <body>
-    {{-- menu topo --}}
+
     <nav>
         <div class="container">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo">Best Imóveis</a>
-                <ul class="right">
+                <a href="/home" class="brand-logo">Best Imóveis</a>
+                 <ul class="right">
                     <li>
                         <a href="{{ route('admin.immobile.index') }}">Imóveis</a>
                     </li>
@@ -26,12 +26,26 @@
                         <a href="{{ route('admin.city.index') }}">Cidades</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.type.index') }}">Tipo</a>
+                        <a href="{{ route('admin.type.index') }}">Tipos</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.finality.index') }}">Finalidade</a>
+                        <a href="{{ route('admin.finality.index') }}">Finalidades</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.user.index') }}">Usuários</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form style="display: inline" id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
+            </div>
         </div>
     </nav>
 
@@ -42,6 +56,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <script>
         @if (session('sucesso'))
@@ -51,7 +66,7 @@
         document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
-  });
+        });
 
     </script>
 

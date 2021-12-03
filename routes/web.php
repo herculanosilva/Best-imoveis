@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\FinalityController;
 use App\Http\Controllers\Admin\ImmobileController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
     Route::resource('immobile', ImmobileController::class);
     // Photo #Nested Resources | immobile/1/photo/???
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
+    //user
+    Route::resource('user', UserController::class)->except(['show']);
 
         #Export excel
         //city
@@ -43,6 +47,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('finalities/export/', 'App\Http\Controllers\Admin\FinalityController@export')->name('finalities.xlsx');
         //immobile
         Route::get('immobiles/export/', 'App\Http\Controllers\Admin\ImmobileController@export')->name('immobiles.xlsx');
+        //immobile
+        Route::get('users/export/', 'App\Http\Controllers\Admin\UserController@export')->name('users.xlsx');
 
         #Export PDF
         //city
@@ -53,6 +59,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('finalities/exporttopdf/', 'App\Http\Controllers\Admin\FinalityController@exporttopdf')->name('finalities.pdf');
         //immobile
         Route::get('immobiles/exporttopdf/', 'App\Http\Controllers\Admin\ImmobileController@exporttopdf')->name('immobiles.pdf');
+        //user
+        Route::get('users/exporttopdf/', 'App\Http\Controllers\Admin\UserController@exporttopdf')->name('users.pdf');
 
 });
 
@@ -69,5 +77,13 @@ Route::prefix('admin')->name('admin.')->group( function(){
 //     ->name('company.exporttoexcel')->where('search', '.*');
 
 Auth::routes();
+
+// redirect route / to always access login route
+// Route::redirect('/','/login');
+// redirect route /login user will not reset password
+// Route::redirect('/password/reset','/login');
+
+#>middleware('verified');
+// Auth::routes([ 'verify' => true ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
