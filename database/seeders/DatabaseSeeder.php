@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             FinalitySeeder::class,
             ProximitySeeder::class,
-            TypeSeeder::class
+            TypeSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
