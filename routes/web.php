@@ -18,21 +18,32 @@ use App\Http\Controllers\Admin\TypeController;
 |
 */
 
-// redirect
-// Route::redirect('/', '/admin/immobile');
+//Classe auxiliar que ajuda a gerar todas as rotas necessárias para autenticação do usuário.
+Auth::routes([ 'verify' => true ]);
+
+// redirect route /login user will not reset password
+Route::redirect('/password/reset','/login');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //grupo admin
 Route::prefix('admin')->name('admin.')->group( function(){
     //city
-    Route::resource('city', CityController::class)->except(['show']);
+    Route::resource('city', CityController::class)->except(['show'])->middleware('verified');
     //type
-    Route::resource('type', TypeController::class)->except(['show']);
+    Route::resource('type', TypeController::class)->except(['show'])->middleware('verified');
     //finality
-    Route::resource('finality', FinalityController::class)->except(['show']);
+    Route::resource('finality', FinalityController::class)->except(['show'])->middleware('verified');
     //Immobile
-    Route::resource('immobile', ImmobileController::class);
+    Route::resource('immobile', ImmobileController::class)->middleware('verified');
     // Photo #Nested Resources | immobile/1/photo/???
+<<<<<<< Updated upstream
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
+=======
+    Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update'])->middleware('verified');
+    //user
+    Route::resource('user', UserController::class)->except(['show'])->middleware('verified');
+>>>>>>> Stashed changes
 
         #Export excel
         //city
@@ -59,6 +70,7 @@ Route::prefix('admin')->name('admin.')->group( function(){
 // Site
     route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
     route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
+<<<<<<< Updated upstream
 
 
 
@@ -71,3 +83,5 @@ Route::prefix('admin')->name('admin.')->group( function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+>>>>>>> Stashed changes
