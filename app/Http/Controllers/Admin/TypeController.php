@@ -20,7 +20,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = Type::orderBy('name', 'asc');
+        $types = $types->paginate(env('PAGINATION'))->withQueryString();
         return view('admin.type.index', compact('types'));
     }
 

@@ -41,6 +41,10 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- paginação --}}
+        <div class="center">
+            {{ $users->links('admin.shared.pagination')}}
+        </div>
 
         {{-- botão --}}
         <div class="fixed-action-btn">

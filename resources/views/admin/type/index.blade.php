@@ -41,6 +41,10 @@
                 @endforelse
             </tbody>
         </table>
+        {{-- paginação --}}
+        <div class="center">
+            {{ $types->links('admin.shared.pagination')}}
+        </div>
 
         {{-- botão --}}
         <div class="fixed-action-btn">

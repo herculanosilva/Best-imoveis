@@ -20,7 +20,8 @@ class FinalityController extends Controller
      */
     public function index()
     {
-        $finalities = Finality::all();
+        $finalities = Finality::orderBy('name', 'asc');
+        $finalities = $finalities->paginate(env('PAGINATION'))->withQueryString();
         return view('admin.finality.index', compact('finalities'));
     }
 
