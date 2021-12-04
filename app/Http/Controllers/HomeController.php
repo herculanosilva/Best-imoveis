@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Immobile;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
+use Illuminate\Support\Facades\DB;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +25,48 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $chart = (new LarapexChart)->setTitle('Imóveis por cidade')
+        // ->setDataset([150, 120])
+        // ->setLabels(['Published', 'No Published']);
+
+        // return view('home', compact('chart'));
+
+        //grafico:
+        $chart = (new LarapexChart)->pieChart()
+                ->setTitle('Imóveis por cidade')
+                ->addData([
+                    $immobiles = DB::table('immobiles')
+                                ->where([
+                                    ['tipo','=','Gerente'],
+                                    ['deleted_at','=', null],
+                                ])
+                                ->count(),
+                    $immobiles = DB::table('cities')
+                                ->where([
+                                    ['tipo','=','Administrador'],
+                                    ['deleted_at','=', null],
+                                ])
+                                ->count()
+                ])
+                ->setColors(['#EFCB68','#388697','#D65780'])
+                ->setLabels(['Gerente', 'Administrador', 'RH/DP']);
+
+        return view('home', compact('chart'));
+
     }
+
 }
+
+
+/*
+/cards:
+        $usuarios = DB::table('users')
+                    ->whereNull('deleted_at')
+                    ->get();
+        $usuarios_qtd = $usuarios->count();
+
+        $empresas = DB::table('empresas')
+                    ->whereNull('deleted_at')
+                    ->get();
+        $empresas_qtd = $empresas->count();
+*/
