@@ -77,10 +77,12 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-
         $user = User::find($id);
-        $user->update($request->all());
-        $user->save();
+        if($user){
+            $data = $request->except(['_token','_method']);
+            $data['password'] = Hash::make($request->password);
+            $user->update($data);
+        }
 
         $request->session()->flash('sucesso',"O usuário $request->name foi editado com sucesso!");
         return redirect()->route('admin.user.index');

@@ -20,25 +20,30 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// redirect
-// Route::redirect('/', '/admin/immobile');
+//Classe auxiliar que ajuda a gerar todas as rotas necessárias para autenticação do usuário.
+Auth::routes([ 'verify' => true ]);
+
+// redirect route /login user will not reset password
+Route::redirect('/password/reset','/login');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //grupo admin
 Route::prefix('admin')->name('admin.')->group( function(){
     //city
-    Route::resource('city', CityController::class)->except(['show']);
+    Route::resource('city', CityController::class)->except(['show'])->middleware('verified');
     //type
-    Route::resource('type', TypeController::class)->except(['show']);
+    Route::resource('type', TypeController::class)->except(['show'])->middleware('verified');
     //finality
-    Route::resource('finality', FinalityController::class)->except(['show']);
+    Route::resource('finality', FinalityController::class)->except(['show'])->middleware('verified');
     //Immobile
-    Route::resource('immobile', ImmobileController::class);
+    Route::resource('immobile', ImmobileController::class)->middleware('verified');
     // Photo #Nested Resources | immobile/1/photo/???
-    Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
+    Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update'])->middleware('verified');
     //user
-    Route::resource('user', UserController::class)->except(['show']);
+    Route::resource('user', UserController::class)->except(['show'])->middleware('verified');
 
-        #Export excel
+    #Export excel
         //city
         Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
         //type
@@ -67,23 +72,5 @@ Route::prefix('admin')->name('admin.')->group( function(){
 // Site
     route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
     route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
-
-
-
-// //Exports exemple
-// Route::get('company/exporttopdf/{search?}','App\Http\Controllers\ExpotsController@CompanyPDF')
-//     ->name('company.exporttopdf')->where('search', '.*');
-// Route::get('company/exporttoexcel/{search?}','App\Http\Controllers\ExpotsController@CompanySpreadsheet')
-//     ->name('company.exporttoexcel')->where('search', '.*');
-
-Auth::routes();
-
-// redirect route / to always access login route
-// Route::redirect('/','/login');
-// redirect route /login user will not reset password
-// Route::redirect('/password/reset','/login');
-
-#>middleware('verified');
-// Auth::routes([ 'verify' => true ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

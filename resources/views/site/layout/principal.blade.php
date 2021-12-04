@@ -19,13 +19,21 @@
         </div>
     </nav> --}}
     <nav>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">Best Imóveis</a>
+            </div>
+        </div>
+    </nav>
+
+    {{-- <nav>
         <div class="nav-wrapper">
           <a href="/" class="brand-logo">Best Imóveis</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
           </ul>
         </div>
-    </nav>
+    </nav> --}}
 
     {{-- slide --}}
     @yield('slider')
