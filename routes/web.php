@@ -26,6 +26,7 @@ Auth::routes([ 'verify' => true ]);
 // redirect route /login user will not reset password
 Route::redirect('/password/reset','/login');
 
+//home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //grupo admin
@@ -73,4 +74,3 @@ Route::prefix('admin')->name('admin.')->group( function(){
     route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
     route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
