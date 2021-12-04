@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\FinalityController;
 use App\Http\Controllers\Admin\ImmobileController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +39,11 @@ Route::prefix('admin')->name('admin.')->group( function(){
     //Immobile
     Route::resource('immobile', ImmobileController::class)->middleware('verified');
     // Photo #Nested Resources | immobile/1/photo/???
-<<<<<<< Updated upstream
-    Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update']);
-=======
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update'])->middleware('verified');
     //user
     Route::resource('user', UserController::class)->except(['show'])->middleware('verified');
->>>>>>> Stashed changes
 
-        #Export excel
+    #Export excel
         //city
         Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
         //type
@@ -54,6 +52,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('finalities/export/', 'App\Http\Controllers\Admin\FinalityController@export')->name('finalities.xlsx');
         //immobile
         Route::get('immobiles/export/', 'App\Http\Controllers\Admin\ImmobileController@export')->name('immobiles.xlsx');
+        //immobile
+        Route::get('users/export/', 'App\Http\Controllers\Admin\UserController@export')->name('users.xlsx');
 
         #Export PDF
         //city
@@ -64,24 +64,13 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('finalities/exporttopdf/', 'App\Http\Controllers\Admin\FinalityController@exporttopdf')->name('finalities.pdf');
         //immobile
         Route::get('immobiles/exporttopdf/', 'App\Http\Controllers\Admin\ImmobileController@exporttopdf')->name('immobiles.pdf');
+        //user
+        Route::get('users/exporttopdf/', 'App\Http\Controllers\Admin\UserController@exporttopdf')->name('users.pdf');
 
 });
 
 // Site
     route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
     route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
-<<<<<<< Updated upstream
-
-
-
-// //Exports exemple
-// Route::get('company/exporttopdf/{search?}','App\Http\Controllers\ExpotsController@CompanyPDF')
-//     ->name('company.exporttopdf')->where('search', '.*');
-// Route::get('company/exporttoexcel/{search?}','App\Http\Controllers\ExpotsController@CompanySpreadsheet')
-//     ->name('company.exporttoexcel')->where('search', '.*');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
->>>>>>> Stashed changes

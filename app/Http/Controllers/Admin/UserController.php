@@ -83,6 +83,7 @@ class UserController extends Controller
             $data['password'] = Hash::make($request->password);
             $user->update($data);
         }
+
         $request->session()->flash('sucesso',"O usuário $request->name foi editado com sucesso!");
         return redirect()->route('admin.user.index');
     }
