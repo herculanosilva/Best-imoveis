@@ -32,41 +32,34 @@ class HomeController extends Controller
         // return view('home', compact('chart'));
 
         //grafico:
-        $chart = (new LarapexChart)->pieChart()
-                ->setTitle('Imóveis por cidade')
-                ->addData([
-                    $immobiles = DB::table('immobiles')
-                                ->where([
-                                    ['tipo','=','Gerente'],
-                                    ['deleted_at','=', null],
-                                ])
-                                ->count(),
-                    $immobiles = DB::table('cities')
-                                ->where([
-                                    ['tipo','=','Administrador'],
-                                    ['deleted_at','=', null],
-                                ])
-                                ->count()
-                ])
-                ->setColors(['#EFCB68','#388697','#D65780'])
-                ->setLabels(['Gerente', 'Administrador', 'RH/DP']);
+        // $chart = (new LarapexChart)->pieChart()
+        //         ->setTitle('Imóveis por cidade')
+        //         ->addData([
+        //             $immobiles = DB::table('immobiles')
+        //                         ->where([
+        //                             ['tipo','=','Gerente'],
+        //                             ['deleted_at','=', null],
+        //                         ])
+        //                         ->count(),
+        //             $immobiles = DB::table('cities')
+        //                         ->where([
+        //                             ['tipo','=','Administrador'],
+        //                             ['deleted_at','=', null],
+        //                         ])
+        //                         ->count()
+        //         ])
+        //         ->setColors(['#EFCB68','#388697','#D65780'])
+        //         ->setLabels(['Gerente', 'Administrador', 'RH/DP']);
 
-        return view('home', compact('chart'));
-
-    }
-
-}
-
-
-/*
-/cards:
+        //cards:
         $usuarios = DB::table('users')
                     ->whereNull('deleted_at')
                     ->get();
         $usuarios_qtd = $usuarios->count();
 
-        $empresas = DB::table('empresas')
-                    ->whereNull('deleted_at')
-                    ->get();
-        $empresas_qtd = $empresas->count();
-*/
+
+        return view('home', compact('usuarios_qtd'));
+
+    }
+
+}
