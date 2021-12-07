@@ -52,13 +52,19 @@ class HomeController extends Controller
         //         ->setLabels(['Gerente', 'Administrador', 'RH/DP']);
 
         //cards:
-        $usuarios = DB::table('users')
-                    ->whereNull('deleted_at')
-                    ->get();
-        $usuarios_qtd = $usuarios->count();
+        $cidade = DB::table('cities')->get();
+        $qtd_cidades = $cidade->count();
 
+        $tipo = DB::table('types')->get();
+        $qtd_tipos = $tipo->count();
 
-        return view('home', compact('usuarios_qtd'));
+        $finalidade = DB::table('finalities')->get();
+        $qtd_finalidade = $finalidade->count();
+
+        $usuarios = DB::table('users')->get();
+        $qtd_usuarios = $usuarios->count();
+
+        return view('home', compact('qtd_cidades','qtd_tipos','qtd_finalidade','qtd_usuarios'));
 
     }
 
