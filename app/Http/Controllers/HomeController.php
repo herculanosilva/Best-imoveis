@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Finality;
-use App\Models\Immobile;
 use App\Models\Type;
 use App\Models\User;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 use Illuminate\Support\Facades\DB;
-
-use function PHPSTORM_META\type;
 
 class HomeController extends Controller
 {
@@ -31,43 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $chart = (new LarapexChart)->setTitle('Imóveis por city')
-        // ->setDataset([150, 120])
-        // ->setLabels(['Published', 'No Published']);
-
-        // return view('home', compact('chart'));
-
-        //grafico:
-        // $chart = (new LarapexChart)->pieChart()
-        //         ->setTitle('Imóveis por city')
-        //         ->addData([
-        //             $immobiles = DB::table('immobiles')
-        //                         ->where([
-        //                             ['type','=','Gerente'],
-        //                             ['deleted_at','=', null],
-        //                         ])
-        //                         ->count(),
-        //             $immobiles = DB::table('cities')
-        //                         ->where([
-        //                             ['type','=','Administrador'],
-        //                             ['deleted_at','=', null],
-        //                         ])
-        //                         ->count()
-        //         ])
-        //         ->setColors(['#EFCB68','#388697','#D65780'])
-        //         ->setLabels(['Gerente', 'Administrador', 'RH/DP']);
-
         //cards:
-
         $qtd_cities = City::count();
-
         $qtd_typies = Type::count();
-
         $qtd_finalities = Finality::count();
-
         $qtd_users = User::count();
 
-
+        //pieChart
         $cities = City::all();
         $count_array = array();
         $nome_array = array();
@@ -76,7 +43,7 @@ class HomeController extends Controller
             $count = DB::table('immobiles')
                         ->where('immobiles.city_id',$city->id)
                         ->count();
-            if($count != null){ //!=0 && $count >0 && $count != null
+            if($count != null && $count >0){
                 array_push($count_array,$count);
                 array_push($nome_array,$city->name);
             }
