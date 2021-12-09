@@ -6,7 +6,8 @@
 4. Defina suas credenciais de banco de dados em seu arquivo .env
 5. Executar todas as suas migrações: php artisan migrate
 6. Semeie seu banco de dados: php artisan db:seed
-7. Execute o servidor: php artisan serve --port=8000 
+7. crie um link simbólico de public/storage para storage/app/public: php artisan storage:link
+8. Execute o servidor: php artisan serve --port=8000 
     - O servidor inciará na porta:8000 
     - acesse http://localhost:8000
 
