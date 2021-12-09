@@ -7,7 +7,12 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {{-- <style>
+        .card-max{
+            min-width: 150px;}
+    </style> --}}
     <title>Best Imoveis | Login</title>
 </head>
 <body>
