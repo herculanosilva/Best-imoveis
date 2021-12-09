@@ -11,29 +11,18 @@
     <title>Best Imoveis</title>
 </head>
 <body>
+
     {{-- menu topo --}}
-    {{-- <nav>
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo center">Best Imóveis</a>
-        </div>
-    </nav> --}}
     <nav>
         <div class="container">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo">Best Imóveis</a>
             </div>
+            <ul class="right">
+                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+            </ul>
         </div>
     </nav>
-
-    {{-- <nav>
-        <div class="nav-wrapper">
-          <a href="/" class="brand-logo">Best Imóveis</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-          </ul>
-        </div>
-    </nav> --}}
 
     {{-- slide --}}
     @yield('slider')
