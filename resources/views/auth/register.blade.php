@@ -2,12 +2,21 @@
 
 @section('conteudo-principal')
     <div class="row">
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="row">
                 <br>
                     <div class="card">
                         <div class="card-content">
+                            {{-- nome --}}
+                            <div class="input-field col s12">
+                                <input type="text" name="name" id="name" value="{{old('name', $user->name ?? '')}}" required />
+                                <label for="name">Nome</label>
+                                @error('name')
+                                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
+                                @enderror
+                            </div>
+                            <br>
                             {{-- email --}}
                             <div class="input-field col s12">
                                 <input type="text" name="email" id="email" value="{{old('email', $user->email ?? '')}}" required />
@@ -26,24 +35,21 @@
                                 @enderror
                             </div>
                             <br>
-                            {{-- manter conectado --}}
-                            <div class="form-field red-text text-darken-2">
-                                <label>
-                                    <input type="checkbox" />
-                                    <span>Manter conectado</span>
-                                </label>
+                            {{-- confirmar senha --}}
+                            <div class="input-field col s12">
+                                <input type="password" name="password_confirmation" id="password-confirm" required/>
+                                <label for="password-confirm">Confirmar senha</label>
+                                @error('password-confirm')
+                                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
+                                @enderror
                             </div>
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif
                             <br>
                             {{-- Entrar --}}
                             <div class="form-field center">
-                                <button class="btn-large waves-effect waves-dark" style="width:25%;">Entrar</button>
+                                <button class="btn-large waves-effect waves-dark" style="width:25%;">Registrar</button>
                             </div><br>
                         </div>
+
                     </div>
                 </div>
             </div>
