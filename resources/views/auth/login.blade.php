@@ -33,11 +33,9 @@
                                     <span>Manter conectado</span>
                                 </label>
                             </div>
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif
+                            <a href="{{ route('password.update') }}">esqueceu a senha?</a>
+                            <br>
+                             Não tem conta?<a href="{{ route('register') }}">criar!</a>
                             <br>
                             {{-- Entrar --}}
                             <div class="form-field center">
