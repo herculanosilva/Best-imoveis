@@ -23,10 +23,6 @@ use Illuminate\Support\Facades\Auth;
 //Classe auxiliar que ajuda a gerar todas as rotas necessárias para autenticação do usuário.
 // Auth::routes([ 'verify' => true ]);
 
-Auth::routes();
-// redirect route /login user will not reset password
-// Route::redirect('/password/reset','/login');
-
 //home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -75,3 +71,4 @@ Route::prefix('admin')->name('admin.')->group( function(){
     route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
     route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
 
+Auth::routes();
