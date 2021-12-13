@@ -18,11 +18,21 @@ class FinalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // listando todas as finalidades
         $finalities = Finality::orderBy('name', 'asc');
+        //verificando se ha pesquisa
+        if($request->search){
+            //substitui todas as ocorrencias da string de procura com a string de substituição
+            $request->search = str_replace(['.','-','/'],'', $request->search);
+            $finalities->where('name','ILIKE', "%{$request->search}%")->get();
+        }
         $finalities = $finalities->paginate(env('PAGINATION'))->withQueryString();
-        return view('admin.finality.index', compact('finalities'));
+        // retornando o conteudo da pequisa para preencher o input
+        $search = $request->search;
+
+        return view('admin.finality.index', compact('finalities','search'));
     }
 
     /**

@@ -18,11 +18,21 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // listando todas os tipos de imoveis
         $types = Type::orderBy('name', 'asc');
+        //verificando se ha pesquisa
+        if($request->search){
+            //substitui todas as ocorrencias da string de procura com a string de substituição
+            $request->search = str_replace(['.','-','/'],'', $request->search);
+            $types->where('name','ILIKE', "%{$request->search}%")->get();
+        }
         $types = $types->paginate(env('PAGINATION'))->withQueryString();
-        return view('admin.type.index', compact('types'));
+        // retornando o conteudo da pequisa para preencher o input
+        $search = $request->search;
+
+        return view('admin.type.index', compact('types','search'));
     }
 
     /**

@@ -7,6 +7,23 @@
             <a href="{{ route('admin.finalities.pdf') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
             <a href="{{ route('admin.finalities.xlsx') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
         </div>
+        {{-- filtro de cidades --}}
+        <section class="section">
+            <form action="{{ route('admin.finality.index') }}" method="get">
+                <div class="row valign-wrapper">
+                    <div class="input-field col s12">
+                        <input type="text" name="search" id="search" value="{{ $search }}">
+                        <label for="search">Pesquisar</label>
+                    </div>
+                </div>
+                {{-- botão pesquisar --}}
+                <div class="row right-align">
+                    <a href="{{ route('admin.finality.index') }}" class="btn-flat waves-effect">Exibir todos</a>
+                    <button type="submit" class="btn waves-effect waves-alight">Pesquisar</button>
+                </div>
+            </form>
+        </section>
+        <hr>
         <table class="highlight">
             <thead>
                 <tr>
