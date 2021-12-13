@@ -19,13 +19,21 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cation = 'Lista de Cidades';
+        //listando todas as cidades
         $cities = City::orderBy('name', 'asc');
+        //verificando se ha pesquisa
+        if($request->search){
+            //substitui todas as ocorrencias da string de procura com a string de substituição
+            $request->search = str_replace(['.','-','/'],'', $request->search);
+            $cities->where('name','ILIKE', "%{$request->search}%")->get();
+        }
         $cities = $cities->paginate(env('PAGINATION'))->withQueryString();
+        // retornando o conteudo da pequisa para preencher o input
+        $search = $request->search;
 
-        return view('admin.city.index', compact('cation','cities'));
+        return view('admin.city.index', compact('cities','search'));
     }
 
     /**

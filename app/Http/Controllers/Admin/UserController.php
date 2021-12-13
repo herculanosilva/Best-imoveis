@@ -19,11 +19,24 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // listando todos os usuarios
         $users = User::orderBy('name', 'asc');
+        //verificando se ha pesquisa
+        if($request->search){
+            //substitui todas as ocorrencias da string de procura com a string de substituição
+            // $request->search = str_replace(['.','-','/'],'', $request->search);
+            $users->where('name','ILIKE', "%{$request->search}%")
+                    ->orWhere('email','ILIKE',"%{$request->search}%")
+                    ->get();
+        }
         $users = $users->paginate(env('PAGINATION'))->withQueryString();
-        return view('admin.user.index', compact('users'));
+
+        // retornando o conteudo da pequisa para preencher o input
+        $search = $request->search;
+
+        return view('admin.user.index', compact('users','search'));
     }
 
     /**
