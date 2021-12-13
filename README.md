@@ -20,4 +20,4 @@ PHP, Composer e Postgresql.
 #### Luciano Souza https://www.youtube.com/watch?v=azk28V0gGZk&list=PLlwEQc_2ZyjazgFmo16a3zhiQEll3VbU9
 
 ![image]()
-<img height="35" width="35" src="https://user-images.githubusercontent.com/85914689/145887131-f858bf5c-1c85-4c53-aa89-5654972215ae.png">
+<img height="350" width="350" src="https://user-images.githubusercontent.com/85914689/145887131-f858bf5c-1c85-4c53-aa89-5654972215ae.png">
