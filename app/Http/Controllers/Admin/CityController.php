@@ -107,9 +107,9 @@ class CityController extends Controller
         return redirect()->route('admin.city.index');
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new CitiesExport, 'Cidades.xlsx');
+        return Excel::download(new CitiesExport($request->search), 'Cidades.xlsx');
     }
 
     public function exporttopdf()

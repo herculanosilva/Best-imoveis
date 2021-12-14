@@ -9,12 +9,30 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class TypiesExport implements FromCollection, WithHeadings, WithMapping
 {
+    //variável de pesquisa
+    protected $search;
+
+    // construct
+    public function __construct($search)
+    {
+        $this->search = $search;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Type::all();
+        if( $this->search == null){
+            // retornando todas as cidades
+            return Type::all();
+        } else {
+            // retornando com os parametros de pequisa
+            return Type::where('name','ILIKE',"%{$this->search}%")
+                        ->orderBy('name', 'ASC')
+                        ->get();
+        }
+
     }
 
     public function headings():array{

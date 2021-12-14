@@ -9,12 +9,29 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class UsersExport implements FromCollection, WithHeadings, WithMapping
 {
+    //variável de pesquisa
+    protected $search;
+
+    public function __construct($search)
+    {
+        $this->search = $search;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return User::all();
+        if($this->search == null){
+            // retornando todas as cidades
+            return User::all();
+        }else{
+            // retornando com os parametros de pequisa
+            return User::where('name','ILIKE',"%{$this->search}%")
+                        ->orWhere('email','ILIKE',"%{$this->search}%")
+                        ->orderBy('name', 'ASC')
+                        ->get();
+        }
     }
 
     public function headings():array{

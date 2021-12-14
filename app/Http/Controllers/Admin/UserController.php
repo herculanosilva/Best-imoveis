@@ -115,8 +115,8 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    public function export(){
-        return Excel::download(new UsersExport, 'Usuarios.xlsx');
+    public function export(Request $request){
+        return Excel::download(new UsersExport($request->search), 'Usuarios.xlsx');
     }
 
     public function exporttopdf()

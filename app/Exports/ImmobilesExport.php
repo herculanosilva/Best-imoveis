@@ -9,12 +9,31 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
 {
+    //variável de pesquisa
+    protected $city_id;
+    protected $title;
+
+    public function __construct($city_id, $title)
+    {
+        $this->city_id = $city_id;
+        $this->search = $title;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Immobile::with(['proximity','type','finality','address','city'])->get();
+        if($this->city_id == null && $this->title == null){
+            // retornando todas as finalidades
+            return Immobile::with(['proximity','type','finality','address','city'])
+                            ->get();
+        }else{
+            return Immobile::where('title','ILIKE',"%{$this->search}%")
+                            ->orWhere('city_id', $this->city_id)
+                            ->with(['proximity','type','finality','address','city'])
+                            ->get();
+        }
 
     }
 
