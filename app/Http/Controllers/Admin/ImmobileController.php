@@ -180,8 +180,8 @@ class ImmobileController extends Controller
         return redirect()->route('admin.immobile.index');
     }
 
-    public function export(){
-        return Excel::download(new ImmobilesExport, 'Imoveis.xlsx');
+    public function export(Request $request){
+        return Excel::download(new ImmobilesExport($request->city_id, $request->title), 'Imoveis.xlsx');
     }
 
     public function exporttopdf()

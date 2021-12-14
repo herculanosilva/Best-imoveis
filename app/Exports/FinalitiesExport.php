@@ -9,12 +9,27 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class FinalitiesExport implements FromCollection, WithHeadings, WithMapping
 {
+    //variável de pesquisa
+    protected $search;
+
+    public function __construct($search)
+    {
+        $this->search = $search;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Finality::all();
+        if($this->search == null){
+            // retornando todas as finalidades
+            return Finality::all();
+        }else{
+            return Finality::where('name','ILIKE',"%{$this->search}%")
+                        ->orderBy('name', 'ASC')
+                        ->get();
+        }
     }
 
     public function headings():array{

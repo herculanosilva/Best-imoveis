@@ -4,8 +4,8 @@
     <section class="section">
         {{-- exports --}}
         <div class="right-align">
-            <a href="{{ route('admin.users.pdf') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
-            <a href="{{ route('admin.users.xlsx') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
+            <a href="{{ route('admin.users.pdf', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
+            <a href="{{ route('admin.users.xlsx', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
         </div>
         {{-- filtro de usuarios --}}
         <section class="section">

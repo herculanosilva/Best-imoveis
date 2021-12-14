@@ -43,15 +43,25 @@ Route::prefix('admin')->name('admin.')->group( function(){
 
     #Export excel
         //city
-        Route::get('cities/export/', 'App\Http\Controllers\Admin\CityController@export')->name('cities.xlsx');
+        Route::get('cities/export/{search?}', 'App\Http\Controllers\Admin\CityController@export')
+                ->name('cities.xlsx')
+                ->where('search', '.*');
         //type
-        Route::get('typies/export/', 'App\Http\Controllers\Admin\TypeController@export')->name('typies.xlsx');
+        Route::get('typies/export/{search?}', 'App\Http\Controllers\Admin\TypeController@export')
+                ->name('typies.xlsx')
+                ->where('search', '.*');;
         //finality
-        Route::get('finalities/export/', 'App\Http\Controllers\Admin\FinalityController@export')->name('finalities.xlsx');
+        Route::get('finalities/export/{search?}', 'App\Http\Controllers\Admin\FinalityController@export')
+                ->name('finalities.xlsx')
+                ->where('search', '.*');
         //immobile
-        Route::get('immobiles/export/', 'App\Http\Controllers\Admin\ImmobileController@export')->name('immobiles.xlsx');
+        Route::get('immobiles/export/{city_id?}/{title?}', 'App\Http\Controllers\Admin\ImmobileController@export')
+                ->name('immobiles.xlsx')
+                ->where('search', '.*');
         //immobile
-        Route::get('users/export/', 'App\Http\Controllers\Admin\UserController@export')->name('users.xlsx');
+        Route::get('users/export/{search?}', 'App\Http\Controllers\Admin\UserController@export')
+                ->name('users.xlsx')
+                ->where('search', '.*');
 
         #Export PDF
         //city

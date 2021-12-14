@@ -102,8 +102,8 @@ class TypeController extends Controller
         return redirect()->route('admin.type.index');
     }
 
-    public function export(){
-        return Excel::download(new TypiesExport, 'Tipo.xlsx');
+    public function export(Request $request){
+        return Excel::download(new TypiesExport($request->search), 'Tipo.xlsx');
     }
 
     public function exporttopdf()
