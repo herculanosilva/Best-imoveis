@@ -9,10 +9,10 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    {{-- <style>
-        .card-max{
-            min-width: 150px;}
-    </style> --}}
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Best Imoveis | Login</title>
 </head>
 <body>
