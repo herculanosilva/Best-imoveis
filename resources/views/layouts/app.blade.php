@@ -13,7 +13,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Best Imoveis | Login</title>
+    <title>Best Imoveis</title>
 </head>
 <body>
     <nav>
@@ -25,7 +25,7 @@
     </nav>
     {{-- conteudo principal --}}
     <div class="container">
-        @yield('conteudo-principal')
+        @yield('content')
     </div>
 
     <!-- Compiled and minified JavaScript -->

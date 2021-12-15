@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('conteudo-principal')
+@section('content')
     <div class="container">
         <form method="POST" action="{{ route('login') }}">
             @csrf

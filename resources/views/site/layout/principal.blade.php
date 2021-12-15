@@ -18,9 +18,9 @@
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo">Best Imóveis</a>
             </div>
-            <ul class="right">
+            {{-- <ul class="right">
                 <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-            </ul>
+            </ul> --}}
         </div>
     </nav>
 
