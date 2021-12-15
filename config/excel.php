@@ -59,7 +59,7 @@ return [
         |
         */
         'properties'             => [
-            'creator'        => '',
+            'creator'        => 'Herculano Silva',
             'lastModifiedBy' => '',
             'title'          => '',
             'description'    => '',
