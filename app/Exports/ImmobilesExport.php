@@ -16,7 +16,7 @@ class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
     public function __construct($city_id, $title)
     {
         $this->city_id = $city_id;
-        $this->search = $title;
+        $this->title = $title;
     }
 
     /**
@@ -29,10 +29,11 @@ class ImmobilesExport implements FromCollection, WithHeadings, WithMapping
             return Immobile::with(['proximity','type','finality','address','city'])
                             ->get();
         }else{
-            return Immobile::where('title','ILIKE',"%{$this->search}%")
-                            ->orWhere('city_id', $this->city_id)
+            return Immobile::where('city_id', $this->city_id)
+                            ->where('title','ILIKE',"%{$this->title}%")
                             ->with(['proximity','type','finality','address','city'])
-                            ->get();
+                            ->get()
+                            ->dd();
         }
 
     }
