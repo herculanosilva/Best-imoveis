@@ -81,4 +81,4 @@ Route::prefix('admin')->name('admin.')->group( function(){
     route::resource('/', App\Http\Controllers\Site\CityController::class)->only('index');
     route::resource('city.immobile', App\Http\Controllers\Site\ImmobileController::class)->only(['index','show']);
 
-Auth::routes();
+Auth::routes(['verify' => true]);

@@ -24,15 +24,15 @@
         </div>
     </nav>
 
-    {{-- slide --}}
+    {{-- slide dos imoveis --}}
     @yield('slider')
 
-    {{-- conteudo principal --}}
+    {{-- card de cidades --}}
     <div class="container">
-        @yield('conteudo-principal')
+        @yield('card_city')
     </div>
 
-    {{-- footer --}}
+    {{-- rodape --}}
     @yield('footer')
 
     <!-- Compiled and minified JavaScript -->
