@@ -12,9 +12,30 @@
     - acesse http://localhost:8000
 
 ### Pré-requisitos
-
 Ter instalado em sua máquina:
 PHP, Composer e Postgresql.
 
+### Sobre
+O projeto foi posposto e implementado conforme as aulas ministradas por Luciano Souza em seu canal do YouTube, outras funcionalidades como autentificação de usuário, exportação de dados nos formatos pdf e xlsx, página de dashboard com gráficos e cards, footer na página inicial do site, filtros de cidade, tipos, finalidades e usuários foram implementados posteriormente ao curso, para melhorar o projeto e deixá-lo mais completo.
+
+Fique a vontade para melhorar o sistema. ;)
+
 ### Curso Laravel 8 com Materialize
+
 #### Luciano Souza https://www.youtube.com/watch?v=azk28V0gGZk&list=PLlwEQc_2ZyjazgFmo16a3zhiQEll3VbU9
+
+## 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+#### *
+-   **[LARAVEL](https://laravel.com/)**
+-   **[NodeJS](https://nodejs.org/en/)**
+-   **[db-dumper](https://github.com/spatie/db-dumper)**
+<!-- -   **[input-mask](https://github.com/RobinHerbots/Inputmask)** -->
+-   **[laravel-dompdf](https://github.com/barryvdh/laravel-dompdf)**
+-   **[laravel-ui](https://github.com/laravel/ui)**
+-   **[Larapex Charts](https://github.com/ArielMejiaDev/larapex-charts)**
+
+## 📝 Licença
+
