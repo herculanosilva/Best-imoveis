@@ -16,7 +16,7 @@ class UserObserver
     public function created(User $user)
     {
         Log::create([
-            'action' => "Cadastro!",
+            'action' => "Cadastro",
             'description' => "O usuário: $user->name foi cadastrado"
         ]);
     }
