@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Finality;
-use App\Models\Log;
+use App\Models\LogAction;
 
 class FinalityObserver
 {
@@ -25,7 +25,7 @@ class FinalityObserver
             $user = 'Administrador';
         }
 
-        Log::create([
+        LogAction::create([
             'action' => "Cadastro",
             'description' => "O usuário: $user cadastrou a finalidade: $finality->name"
         ]);
@@ -40,7 +40,7 @@ class FinalityObserver
     public function updated(Finality $finality)
     {
         $user = auth()->user();
-        Log::create([
+        LogAction::create([
             'action' => "Atualização",
             'description' => "O usuário: $user atualizou a finalidade: $finality->name"
         ]);
@@ -55,7 +55,7 @@ class FinalityObserver
     public function deleted(Finality $finality)
     {
         $user = auth()->user()->name;
-        Log::create([
+        LogAction::create([
             'action' => "Remoção",
             'description' => "O usuário: $user removeu a finalidade: $finality->name"
         ]);

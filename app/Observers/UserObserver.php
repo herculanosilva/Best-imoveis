@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Log;
+use App\Models\LogAction;
 use App\Models\User;
 
 class UserObserver
@@ -15,7 +15,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        Log::create([
+        LogAction::create([
             'action' => "Cadastro",
             'description' => "O usuário: $user->name foi cadastrado"
         ]);
@@ -29,7 +29,7 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        Log::create([
+        LogAction::create([
             'action' => "Atualização",
             'description' => "O usuário: $user->name foi atualizado"
         ]);
@@ -43,7 +43,7 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        Log::create([
+        LogAction::create([
             'action' => "Remoção",
             'description' => "O usuário: $user->name foi removido"
         ]);

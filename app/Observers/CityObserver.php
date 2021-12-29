@@ -3,8 +3,7 @@
 namespace App\Observers;
 
 use App\Models\City;
-use App\Models\Log;
-use Illuminate\Http\Request;
+use App\Models\LogAction;
 
 class CityObserver
 {
@@ -16,17 +15,17 @@ class CityObserver
      */
     public function created(City $city)
     {
-        //recuperando os dados do usuario logado
+        //recuperando os dados do usuario LogActionado
         $user = auth()->user();
-        //verificando se há usuario logado (estamos inserindo por seed's ?)
+        //verificando se há usuario LogActionado (estamos inserindo por seed's ?)
         if (isset($user)) {
             $user->name;
         }else{
-            //caso não tenha usuario logado vamos atribuir o nome administrador
+            //caso não tenha usuario LogActionado vamos atribuir o nome administrador
             $user = 'Administrador';
         }
 
-        Log::create([
+        LogAction::create([
             'action' => "Cadastro",
             'description' => "O usuário: $user cadastrou a cidade: $city->name"
         ]);
@@ -41,7 +40,7 @@ class CityObserver
     public function updated(City $city)
     {
         $user = auth()->user()->name;
-        Log::create([
+        LogAction::create([
             'action' => "Atualização",
             'description' => "O usuário: $user atualizou a cidade: $city->name"
         ]);
@@ -56,7 +55,7 @@ class CityObserver
     public function deleted(City $city)
     {
         $user = auth()->user()->name;
-        Log::create([
+        LogAction::create([
             'action' => "Remoção",
             'description' => "O usuário: $user removeu a cidade: $city->name"
         ]);

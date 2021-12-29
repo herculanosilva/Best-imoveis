@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Log;
+use App\Models\LogAction;
 use App\Models\Type;
 
 class TypeObserver
@@ -25,7 +25,7 @@ class TypeObserver
             $user = 'Administrador';
         }
 
-        Log::create([
+        LogAction::create([
             'action' => "Cadastro",
             'description' => "O usuário: $user cadastrou o tipo: $type->name"
         ]);
@@ -40,7 +40,7 @@ class TypeObserver
     public function updated(Type $type)
     {
         $user = auth()->user();
-        Log::create([
+        LogAction::create([
             'action' => "Atualização",
             'description' => "O usuário: $user atualizou o tipo: $type->name"
         ]);
@@ -55,7 +55,7 @@ class TypeObserver
     public function deleted(Type $type)
     {
         $user = auth()->user()->name;
-        Log::create([
+        LogAction::create([
             'action' => "Remoção",
             'description' => "O usuário: $user removeu o tipo: $type->name"
         ]);
