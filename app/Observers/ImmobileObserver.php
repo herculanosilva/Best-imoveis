@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Immobile;
-use App\Models\Log;
+use App\Models\LogAction;
 
 class ImmobileObserver
 {
@@ -25,7 +25,7 @@ class ImmobileObserver
             $user = 'Administrador';
         }
 
-        Log::create([
+        LogAction::create([
             'action' => "Cadastro",
             'description' => "O usuário: $user cadastrou o imovel: $immobile->name"
         ]);
@@ -40,7 +40,7 @@ class ImmobileObserver
     public function updated(Immobile $immobile)
     {
         $user = auth()->user()->name;
-        Log::create([
+        LogAction::create([
             'action' => "Atualização",
             'description' => "O usuário: $user atualizou o imovel: $immobile->name"
         ]);
@@ -55,7 +55,7 @@ class ImmobileObserver
     public function deleted(Immobile $immobile)
     {
         $user = auth()->user()->name;
-        Log::create([
+        LogAction::create([
             'action' => "Remoção",
             'description' => "O usuário: $user removeu o imovel: $immobile->name"
         ]);
