@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -61,6 +62,7 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'type' => $request->type,
             'password' => Hash::make($request->password),
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
@@ -89,17 +91,20 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $user = User::find($id);
-        if($user){
+        try {
             $data = $request->except(['_token','_method']);
-            $data['password'] = Hash::make($request->password);
+            // $data['name'] = strtoupper($data['name']);
             $user->update($data);
-        }
 
-        $request->session()->flash('sucesso',"O usuário $request->name foi editado com sucesso!");
+            $request->session()->flash('sucesso',"O usuário $request->name foi editado com sucesso!");
+            return redirect()->route('admin.user.index');
+        } catch (Exception $e) {
+
+        $request->session()->flash('erro',"Erro ao tentar editar o usuario $request->name");
         return redirect()->route('admin.user.index');
+        }
     }
 
     /**

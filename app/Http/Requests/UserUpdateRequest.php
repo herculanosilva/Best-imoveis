@@ -25,8 +25,18 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|min:3|max:255',
-            'email' => "bail|required|email|unique:users,email,$this->user",
-            'password' => 'bail|required|min:8|max:20',
+            'email' => "bail|required|email|unique:users,email,{$this->user->id}",
+            'type' => 'bail|required',
+            // 'password' => 'bail|required|min:8|max:20',
+        ];
+    }
+    /**
+     * Customizing the field names in the error message
+     */
+    public function attributes()
+    {
+        return [
+            'type' => 'tipo',
         ];
     }
 }

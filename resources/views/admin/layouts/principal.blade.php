@@ -36,8 +36,24 @@
                     <li>
                         <a href="{{ route('admin.user.index') }}">Usuários</a>
                     </li>
+                    {{-- @if (Auth::user()->type  == 'Administrador')
+                        <li class="nav-item dropdown {{ Route::is('access-log.index') ? 'active' : '' }}">
+                            <a id="navbarDropdownLogs" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Logs
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLogs">
+                                <a class="dropdown-item" href="{{ route('access-log.index') }}">
+                                    Log's de Acesso
+                                </a>
+                                <a class="dropdown-item" href="{{ route('log-viewer::logs.list') }}">
+                                    Log's de Ação
+                                </a>
+                            </div>
+                        </li>
+                    @endif --}}
+                    {{-- logout --}}
                     <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a class="dropdown" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -46,6 +62,26 @@
                             @csrf
                         </form>
                     </li>
+                    {{-- end logout --}}
+                    <!-- Dropdown Trigger -->
+                        <a class='dropdown-trigger waves-effect' href='#' data-target='dropdown'>
+
+                            <?php
+                            $names = explode(' ', Auth::user()->name); // Array ( [0] => Williany [1] => Thalita [2] => Almeida [3] => Veras )
+                            //Se existir o [1] => Thalita, então mostre o Williany Thalita, senão mostre o Williany
+                            $twoNames = (isset($names[1])) ? $names[0]. ' ' .$names[1] : $names[0];
+                            echo $twoNames;
+                            ?>
+                        </a>
+
+                        <!-- Dropdown Structure -->
+                        <ul id='dropdown' class='dropdown-content'>
+                            <li><a href="#!">one</a></li>
+                            <li><a href="#!">two</a></li>
+                            <li><a href="#!">three</a></li>
+                            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                        </ul>
+                        {{--  --}}
                 </ul>
             </div>
         </div>
@@ -65,10 +101,19 @@
             M.toast({html: '{{ session('sucesso') }}'})
         @endif
 
+        @if (session('erro'))
+            M.toast({html: '{{ session('erro') }}'})
+        @endif
 
         document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems);
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
         });
 
     </script>
