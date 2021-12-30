@@ -26,7 +26,18 @@ class UserStoreRequest extends FormRequest
         return [
             'name' => 'bail|required|min:3|max:255',
             'email' => 'bail|required|email|unique:users',
+            'type' => 'bail|required',
             'password' => 'bail|required|min:8|max:20',
+        ];
+    }
+
+    /**
+    * Customizing the field names in the error message
+    */
+    public function attributes()
+    {
+        return [
+            'type' => 'tipo',
         ];
     }
 
@@ -37,4 +48,6 @@ class UserStoreRequest extends FormRequest
             'email.unique' => 'Esse email já está em uso.'
         ];
     }
+
+
 }
