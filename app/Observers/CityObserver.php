@@ -19,7 +19,7 @@ class CityObserver
         $user = auth()->user();
         //verificando se há usuario LogActionado (estamos inserindo por seed's ?)
         if (isset($user)) {
-            $user->name;
+            $user = $user->name;
         }else{
             //caso não tenha usuario LogActionado vamos atribuir o nome administrador
             $user = 'Administrador';

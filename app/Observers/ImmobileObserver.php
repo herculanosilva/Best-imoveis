@@ -19,7 +19,7 @@ class ImmobileObserver
         $user = auth()->user();
         //verificando se há usuario logado (estamos inserindo por seed's ?)
         if (isset($user)) {
-            $user->name;
+            $user = $user->name;
         }else{
             //caso não tenha usuario logado vamos atribuir o nome administrador
             $user = 'Administrador';
