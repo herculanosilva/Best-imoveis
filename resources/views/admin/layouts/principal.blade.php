@@ -36,52 +36,36 @@
                     <li>
                         <a href="{{ route('admin.user.index') }}">Usuários</a>
                     </li>
-                    {{-- @if (Auth::user()->type  == 'Administrador')
-                        <li class="nav-item dropdown {{ Route::is('access-log.index') ? 'active' : '' }}">
-                            <a id="navbarDropdownLogs" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Logs
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLogs">
-                                <a class="dropdown-item" href="{{ route('access-log.index') }}">
-                                    Log's de Acesso
-                                </a>
-                                <a class="dropdown-item" href="{{ route('log-viewer::logs.list') }}">
-                                    Log's de Ação
-                                </a>
-                            </div>
-                        </li>
-                    @endif --}}
-                    {{-- logout --}}
-                    <li>
-                        <a class="dropdown" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form style="display: inline" id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
-                    {{-- end logout --}}
+
                     <!-- Dropdown Trigger -->
-                        <a class='dropdown-trigger waves-effect' href='#' data-target='dropdown'>
+                    <a class='dropdown-trigger waves-effect' href='#' data-target='dropdown'>
+                        <?php
+                        $names = explode(' ', Auth::user()->name); // Array ( [0] => Williany [1] => Thalita [2] => Almeida [3] => Veras )
+                        //Se existir o [1] => Thalita, então mostre o Williany Thalita, senão mostre o Williany
+                        $twoNames = (isset($names[1])) ? $names[0]. ' ' .$names[1] : $names[0];
+                        echo $twoNames;
+                        ?>
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
 
-                            <?php
-                            $names = explode(' ', Auth::user()->name); // Array ( [0] => Williany [1] => Thalita [2] => Almeida [3] => Veras )
-                            //Se existir o [1] => Thalita, então mostre o Williany Thalita, senão mostre o Williany
-                            $twoNames = (isset($names[1])) ? $names[0]. ' ' .$names[1] : $names[0];
-                            echo $twoNames;
-                            ?>
-                        </a>
-
-                        <!-- Dropdown Structure -->
-                        <ul id='dropdown' class='dropdown-content'>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li><a href="#!">three</a></li>
-                            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                        </ul>
-                        {{--  --}}
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown' class='dropdown-content'>
+                        <li><a href="#!">Meu perfil</a></li>
+                            @if (Auth::user()->type  == 'Administrador')
+                                <li><a href="#!">Log acesso</a></li>
+                                <li><a href="#!">Log ação</a></li>
+                            @endif
+                        <li>
+                            <a class="dropdown" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                <span class="red-text text-accent-4">Sair</span>
+                            </a>
+                            <form style="display: inline" id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
                 </ul>
             </div>
         </div>
