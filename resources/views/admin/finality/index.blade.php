@@ -65,7 +65,7 @@
 
     {{-- botão --}}
     <div class="fixed-action-btn">
-        <a href="{{ route('admin.finality.create') }}" class="btn-floating btn-large waves-effect waves-light red">
+        <a href="{{ route('admin.finality.create') }}" class="btn-floating btn-large waves-effect waves-light red pulse">
             <i class="material-icons">add</i></a>
         </a>
     </div>
