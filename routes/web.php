@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\FinalityController;
 use App\Http\Controllers\Admin\ImmobileController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
     Route::resource('immobile.photos', PhotoController::class)->except(['show','edit','update'])->middleware('verified');
     //user
     Route::resource('user', UserController::class)->except(['show'])->middleware('verified');
-
+    //profile
+    Route::resource('profile', ProfileController::class)->only(['index','update'])->middleware('verified');
     #Export excel
         //city
         Route::get('cities/export/{search?}', 'App\Http\Controllers\Admin\CityController@export')
