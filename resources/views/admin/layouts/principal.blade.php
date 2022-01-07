@@ -50,7 +50,7 @@
 
                     <!-- Dropdown Structure -->
                     <ul id='dropdown' class='dropdown-content'>
-                        <li><a href="#!">Meu perfil</a></li>
+                        <li><a href="{{ route('admin.profile.index')}}">Meu perfil</a></li>
                             @if (Auth::user()->type  == 'Administrador')
                                 <li><a href="#!">Log acesso</a></li>
                                 <li><a href="#!">Log ação</a></li>
