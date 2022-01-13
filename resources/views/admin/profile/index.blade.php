@@ -20,15 +20,15 @@
     </div>
 <br>
     <h4 class="mb-3">Atualizar a senha</h4>
-    <form action="" method="POST">
-        @csrf
+    <form action="{{ route('admin.profile.update', $user->id) }}" method="POST">
         @method('PUT')
+        @csrf
         {{-- senha antiga --}}
         <div class="row">
             <div class="input-field col s12">
-                <input type="password" name="password" id="password" required autofocus />
-                <label for="password">Senha Atual</label>
-                @error('password')
+                <input type="password" name="currentPassword" id="currentPassword"  autofocus />
+                <label for="currentPassword">Senha Atual</label>
+                @error('currentPassword')
                     <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>
@@ -36,7 +36,7 @@
         {{-- senha --}}
         <div class="row">
             <div class="input-field col s12">
-                <input type="password" name="newPassword" id="newPassword" required autofocus />
+                <input type="password" name="newPassword" id="newPassword"  autofocus />
                 <label for="newPassword">Nova Senha</label>
                 @error('newPassword')
                     <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
@@ -46,7 +46,7 @@
         {{-- confirmação de senha --}}
         <div class="row">
             <div class="input-field col s12">
-                <input type="password" name="newPassword_confirmation" id="newPassword_confirmation" required autofocus />
+                <input type="password" name="newPassword_confirmation" id="newPassword_confirmation"  autofocus />
                 <label for="newPassword_confirmation">Confirme a Senha</label>
                 @error('newPassword_confirmation')
                     <span class="red-text text-accent-3"><small>{{ $message }}</small></span>

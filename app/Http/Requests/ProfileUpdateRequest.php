@@ -28,25 +28,29 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'currentPassword' => ['bail','required','min:8','max:20', function($attribute,$value,$fail){
                 if (! Hash::check($value, Auth::user()->password)) {
-                    return $fail("A senha está incorreta");
+                    return $fail("A senha atual está incorreta");
                 }
             }],
-            'newPassword' => "bail|required|confirmed|min:8|max:20",
+            'newPassword' => "bail|required|min:8|max:20",
+            'newPassword_confirmation' => "bail|required|confirmed"
         ];
     }
 
     public function attributes()
     {
         return [
-            'currentPassword' => 'Senha Atual',
-            'newPassword' => 'Nova Senha',
+            'currentPassword' => 'Senha atual',
+            'newPassword' => 'Nova senha',
+            'newPassword_confirmation' => 'Confirmação de senha',
         ];
     }
 
     public function messages()
     {
         return [
-            'newPassword.confirmed' => 'A confirmação da senha não confere.',
+            'newPassword.confirmed' => 'teste.',
         ];
     }
 }
+
+
