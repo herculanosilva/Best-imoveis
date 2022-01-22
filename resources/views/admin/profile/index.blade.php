@@ -57,7 +57,7 @@
         {{-- botões de ações --}}
         <div class="right-align">
             <a href={{route('admin.user.index') }} class="btn-flat waves-effect"> Cancelar</a>
-            <button class="btn waves-effect waves-light" user="submit">Salvar</button>
+            <button type="submit" class="btn waves-effect waves-light">Salvar</button>
         </div>
     </form>
 </section>
