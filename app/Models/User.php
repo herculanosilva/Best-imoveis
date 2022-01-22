@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -44,9 +46,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< Updated upstream
-=======
-
 
     public function uptadeProfile($id,array $data){
         DB::table('users')->select('deleted_at')->where('id', $id)->update($data);
@@ -66,6 +65,4 @@ class User extends Authenticatable
     {
         return  DB::table('users')->whereNull('deleted_at')->where('id', $id)->update($data);
     }
-
->>>>>>> Stashed changes
 }
