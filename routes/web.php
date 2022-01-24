@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccessLogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\FinalityController;
@@ -43,6 +44,9 @@ Route::prefix('admin')->name('admin.')->group( function(){
     Route::resource('user', UserController::class)->except(['show'])->middleware('verified');
     //profile
     Route::resource('profile', ProfileController::class)->only(['index','update'])->middleware('verified');
+    //Logs
+    Route::resource('access-log', AccessLogController::class)->middleware('verified');
+
     #Export excel
         //city
         Route::get('cities/export/{search?}', 'App\Http\Controllers\Admin\CityController@export')
