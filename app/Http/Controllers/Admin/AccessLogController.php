@@ -16,10 +16,9 @@ class AccessLogController extends Controller
 
      public function index(){
 
-        $logs = LogAccess::orderBy('id', 'ASC');
+        $logs = LogAccess::orderBy('id', 'DESC');
         $logs = $logs->paginate(env('PAGINATION'))->withQueryString();
-
-        // $logs = LogAccess::orderBy('id','DESC')->paginate(15);
+    
         return view('admin.logs.access', compact('logs'));
     }
 }
