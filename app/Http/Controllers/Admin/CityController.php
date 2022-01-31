@@ -9,8 +9,7 @@ use App\Http\Requests\CityUpdateRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-// use Barryvdh\DomPDF\Facade\PDF;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CityController extends Controller
 {

@@ -9,7 +9,7 @@ use App\Http\Requests\TypeUpdateRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class TypeController extends Controller
 {

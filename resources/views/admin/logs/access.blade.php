@@ -4,7 +4,7 @@
 <br>
     {{-- exports --}}
     <div class="right-align">
-        <a href="{{ route('admin.typies.pdf', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
+        <a href="{{ route('admin.access-log.pdf', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
         <a href="{{ route('admin.typies.xlsx', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
     </div>
     {{-- filtro de tipos --}}
@@ -12,7 +12,7 @@
         <form action="{{ route('admin.access-log.index') }}" method="get">
             <div class="row valign-wrapper">
                 <div class="input-field col s12">
-                    <input type="text" name="search" id="search" value="{{ $search }}"> 
+                    <input type="text" name="search" id="search" value="{{ $search }}">
                     <label for="search">Pesquisar</label>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <tbody>
             @forelse ($logs as $log)
                 <tr>
-                    <td>{{$log->id }}</td> 
+                    <td>{{$log->id }}</td>
                     <td>{{$log->action}}</td>
                     <td>
                         @if ($log->action == "Failed")
@@ -49,7 +49,7 @@
                         @if ($log->action == "Logout")
                           <i class="material-icons indigo-text text-darken-2">logout</i>
                         @endif
-                    </td>               
+                    </td>
                     <td>{{$log->description}}</td>
                     <td class="right-align">{{$log->created_at}}</td>
                 </tr>
@@ -64,4 +64,4 @@
         {{ $logs->links('admin.shared.pagination')}}
     </div>
 @endsection
-</section>      
+</section>
