@@ -28,8 +28,8 @@ class CitiesExport implements FromCollection, WithHeadings, WithMapping
             return City::all();
         } else {
             // retornando com os parametros de pequisa
-            return City::where('name','ILIKE',"%{$this->search}%")
-                        ->orderBy('name', 'ASC')
+            return City::where('action','ILIKE',"%{$this->search}%")
+                        ->orderBy('id', 'DESC')
                         ->get();
         }
 
