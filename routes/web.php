@@ -88,14 +88,10 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('immobiles/exporttopdf/', 'App\Http\Controllers\Admin\ImmobileController@exporttopdf')->name('immobiles.pdf');
         //user
         Route::get('users/exporttopdf/', 'App\Http\Controllers\Admin\UserController@exporttopdf')->name('users.pdf');
-<<<<<<< Updated upstream
-
-=======
         //log access
         Route::get('access/exporttopdf', 'App\Http\Controllers\Admin\AccessLogController@exporttopdf')->name('access-log.pdf');
         //log action
         Route::get('actions/exporttopdf', 'App\Http\Controllers\Admin\ActionLogController@exporttopdf')->name('action-log.pdf');
->>>>>>> Stashed changes
 });
 
 // Site

@@ -1,19 +1,15 @@
+@extends('admin.layouts.principal')
 
-@foreach ($logs as $log)
-<tr>
-    <td>{{$log->id}}</td>
-    <td>{{$log->action}}</td>
-    <td>{{$log->description}}</td>
-    <td>{{$log->created_at}}</td>
-</tr>
+@section('conteudo-principal')
 <br>
-<<<<<<< Updated upstream
+
 @endforeach
-=======
+
     {{-- exports --}}
     <div class="right-align">
         <a href="{{ route('admin.access-log.pdf', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
         <a href="{{ route('admin.accesslog.xlsx', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
+
     </div>
     {{-- filtro de tipos --}}
     <section class="section">
@@ -66,5 +62,11 @@
             @endforelse
         </tbody>
     </table>
->>>>>>> Stashed changes
 
+
+    {{-- paginação --}}
+    <div class="center">
+        {{ $logs->links('admin.shared.pagination')}}
+    </div>
+@endsection
+</section>

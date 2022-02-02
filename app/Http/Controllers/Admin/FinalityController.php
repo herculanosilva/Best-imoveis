@@ -9,7 +9,7 @@ use App\Http\Requests\FinalityUpdateRequest;
 use App\Models\Finality;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class FinalityController extends Controller
 {

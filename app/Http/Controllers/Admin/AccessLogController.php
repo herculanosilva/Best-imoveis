@@ -6,6 +6,8 @@ use App\Exports\AccessLogExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LogAccess;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class AccessLogController extends Controller
 {
@@ -15,20 +17,29 @@ class AccessLogController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index(){
+     public function index(Request $request){
+         // listando todas os logs
+         $logs = LogAccess::orderBy('id', 'DESC');
+         if($request->search){
+             //substitui todas as ocorrencias da string de procura com a string de substituição
+            //  $request->search = str_replace(['.','-','/'],'', $request->search);
+            $logs->where('action','ILIKE', "%{$request->search}%")
+            ->orWhere('description','ILIKE',"%{$request->search}%")
+            ->get();
+        }
 
-        $logs = LogAccess::orderBy('id', 'ASC');
-        $logs = $logs->paginate(env('PAGINATION'))->withQueryString();
+        $logs = $logs->paginate(env('LOGS_PAGINATION'))->withQueryString();
 
-<<<<<<< Updated upstream
+
         // $logs = LogAccess::orderBy('id','DESC')->paginate(15);
         return view('admin.logs.access', compact('logs'));
-=======
-        // retornando o conteudo da pequisa para preencher o input
+        
+       // retornando o conteudo da pequisa para preencher o input
         $search = $request->search;
 
         return view('admin.logs.access', compact('logs','search'));
     }
+
 
     public function export(Request $request){
         return Excel::download(new AccessLogExport($request->search), 'Log de acesso.xlsx');
@@ -39,6 +50,6 @@ class AccessLogController extends Controller
         $logs = LogAccess::all();
         $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs]);
         return $pdf->download('Logs de acesso.pdf');
->>>>>>> Stashed changes
+
     }
 }
