@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LogAccess;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class AccessLogController extends Controller
 {
@@ -25,9 +26,9 @@ class AccessLogController extends Controller
             ->orWhere('description','ILIKE',"%{$request->search}%")
             ->get();
         }
-        
-        $logs = $logs->paginate(env('PAGINATION'))->withQueryString();
-        
+
+        $logs = $logs->paginate(env('LOGS_PAGINATION'))->withQueryString();
+
         // retornando o conteudo da pequisa para preencher o input
         $search = $request->search;
 
@@ -38,10 +39,10 @@ class AccessLogController extends Controller
     //     return Excel::download(new ?Export($request->search), 'Tipo.xlsx');
     // }
 
-    // public function exporttopdf()
-    // {
-    //     $typies = LogAccess::all();
-    //     $pdf = PDF::loadView('admin.type.pdf', ['typies' => $typies]);
-    //     return $pdf->download('Tipos.pdf');
-    // }
+    public function exporttopdf()
+    {
+        $logs = LogAccess::all();
+        $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs]);
+        return $pdf->download('Logs de acesso.pdf');
+    }
 }
