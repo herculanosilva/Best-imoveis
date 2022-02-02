@@ -2,10 +2,14 @@
 
 @section('conteudo-principal')
 <br>
+
+@endforeach
+
     {{-- exports --}}
     <div class="right-align">
         <a href="{{ route('admin.access-log.pdf', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">picture_as_pdf</i>PDF</a>
-        <a href="{{ route('admin.typies.xlsx', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
+        <a href="{{ route('admin.accesslog.xlsx', $search ?? '') }}" class="waves-effect waves-light red btn-small"><i class="material-icons left">grid_on</i>EXCEL</a>
+
     </div>
     {{-- filtro de tipos --}}
     <section class="section">
@@ -51,13 +55,14 @@
                         @endif
                     </td>
                     <td>{{$log->description}}</td>
-                    <td class="right-align">{{$log->created_at}}</td>
+                    <td class="right-align">{{date('H:i:s d/m/Y', strtotime($log->created_at))}}</td>
                 </tr>
             @empty
                 <td colspan="2">Não existe registro de logs!</td>
             @endforelse
         </tbody>
     </table>
+
 
     {{-- paginação --}}
     <div class="center">

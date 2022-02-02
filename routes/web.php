@@ -68,6 +68,14 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('users/export/{search?}', 'App\Http\Controllers\Admin\UserController@export')
                 ->name('users.xlsx')
                 ->where('search', '.*');
+        //log access
+        Route::get('AccessLog/export/{search?}', 'App\Http\Controllers\Admin\AccessLogController@export')
+        ->name('accesslog.xlsx')
+        ->where('search', '.*');
+        //log access
+        Route::get('ActionsLog/export/{search?}', 'App\Http\Controllers\Admin\ActionLogController@export')
+        ->name('actionslog.xlsx')
+        ->where('search', '.*');
 
         #Export PDF
         //city
@@ -82,7 +90,8 @@ Route::prefix('admin')->name('admin.')->group( function(){
         Route::get('users/exporttopdf/', 'App\Http\Controllers\Admin\UserController@exporttopdf')->name('users.pdf');
         //log access
         Route::get('access/exporttopdf', 'App\Http\Controllers\Admin\AccessLogController@exporttopdf')->name('access-log.pdf');
-
+        //log action
+        Route::get('actions/exporttopdf', 'App\Http\Controllers\Admin\ActionLogController@exporttopdf')->name('action-log.pdf');
 });
 
 // Site

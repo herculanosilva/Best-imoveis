@@ -49,7 +49,7 @@
                         <td>{{$log->id}}</td>
                         <td>{{$log->action}}</td>
                         <td>{{$log->description}}</td>
-                        <td>{{date('H:i d/m/Y', strtotime($log->created_at)) }}</td>
+                        <td>{{date('H:i:s d/m/Y', strtotime($log->created_at)) }}</td>
                     </tr>
                 @endforeach
             <tbody>
