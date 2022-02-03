@@ -33,14 +33,14 @@
         </style>
     </head>
     <body>
-        <div class="titulo">Lista de logs de acesso</div>
+        <div class="titulo">{{ $title }}</div>
         <table class="tabela">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Ação</th>
                     <th>Descrição</th>
-                    <th>Ultima atualização</th>
+                    <th>Data do registro</th>
                 </tr>
             </thead>
             <tbody>

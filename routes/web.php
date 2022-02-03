@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccessLogController;
+use App\Http\Controllers\Admin\ActionLogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\FinalityController;
@@ -44,8 +45,10 @@ Route::prefix('admin')->name('admin.')->group( function(){
     Route::resource('user', UserController::class)->except(['show'])->middleware('verified');
     //profile
     Route::resource('profile', ProfileController::class)->only(['index','update'])->middleware('verified');
-    //Logs
+    //access logs
     Route::resource('access-log', AccessLogController::class)->middleware('verified');
+    //action logs
+    Route::resource('action-log', ActionLogController::class)->middleware('verified');
 
     #Export excel
         //city
@@ -70,11 +73,11 @@ Route::prefix('admin')->name('admin.')->group( function(){
                 ->where('search', '.*');
         //log access
         Route::get('AccessLog/export/{search?}', 'App\Http\Controllers\Admin\AccessLogController@export')
-        ->name('accesslog.xlsx')
+        ->name('access-log.xlsx')
         ->where('search', '.*');
-        //log access
+        //log action
         Route::get('ActionsLog/export/{search?}', 'App\Http\Controllers\Admin\ActionLogController@export')
-        ->name('actionslog.xlsx')
+        ->name('action-log.xlsx')
         ->where('search', '.*');
 
         #Export PDF

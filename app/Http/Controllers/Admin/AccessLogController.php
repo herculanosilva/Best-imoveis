@@ -17,11 +17,12 @@ class AccessLogController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index(Request $request){
-         // listando todas os logs
-         $logs = LogAccess::orderBy('id', 'DESC');
-         if($request->search){
-             //substitui todas as ocorrencias da string de procura com a string de substituição
+    public function index(Request $request){
+
+        // listando todas os logs
+        $logs = LogAccess::orderBy('id', 'DESC');
+        if($request->search){
+            //substitui todas as ocorrencias da string de procura com a string de substituição
             //  $request->search = str_replace(['.','-','/'],'', $request->search);
             $logs->where('action','ILIKE', "%{$request->search}%")
             ->orWhere('description','ILIKE',"%{$request->search}%")
@@ -30,10 +31,6 @@ class AccessLogController extends Controller
 
         $logs = $logs->paginate(env('LOGS_PAGINATION'))->withQueryString();
 
-
-        // $logs = LogAccess::orderBy('id','DESC')->paginate(15);
-        return view('admin.logs.access', compact('logs'));
-        
        // retornando o conteudo da pequisa para preencher o input
         $search = $request->search;
 
@@ -48,8 +45,9 @@ class AccessLogController extends Controller
     public function exporttopdf()
     {
         $logs = LogAccess::all();
-        $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs]);
-        return $pdf->download('Logs de acesso.pdf');
+        $title = 'Lista de logs de acesso';
+        $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs], ['title' => $title]);
 
+        return $pdf->download('Logs de acesso.pdf');
     }
 }
