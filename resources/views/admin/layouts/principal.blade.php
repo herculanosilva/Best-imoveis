@@ -53,7 +53,7 @@
                         <li><a href="{{ route('admin.profile.index')}}">Meu perfil</a></li>
                             @if (Auth::user()->type  == 'Administrador')
                                 <li><a href="{{ route('admin.access-log.index') }}">Log acesso</a></li>
-                                <li><a href="#!">Log ação</a></li>
+                                <li><a href="{{ route('admin.action-log.index') }}">Log ação</a></li>
                             @endif
                         <li>
                             <a class="dropdown" href="{{ route('logout') }}"
