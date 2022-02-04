@@ -46,7 +46,7 @@
                 @forelse ($immobiles as $immobile)
                     <tr>
                         <td>{{ $immobile->city->name }}</td>
-                        <td>{{ $immobile->address->district }}</td>
+                        <td>{{ $immobile->district }}</td>
                         <td>{{ $immobile->title }}</td>
                         <td>{{ $immobile->updated_at->format('H:i d-m-Y ') }}</td>
                         <td class="right-align">
