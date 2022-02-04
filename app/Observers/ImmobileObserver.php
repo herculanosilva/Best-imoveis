@@ -27,7 +27,7 @@ class ImmobileObserver
 
         LogAction::create([
             'action' => "Cadastro",
-            'description' => "O usuário: $user cadastrou o imovel: $immobile->name"
+            'description' => "O usuário: $user cadastrou o imovel: $immobile->title"
         ]);
     }
 
@@ -42,7 +42,7 @@ class ImmobileObserver
         $user = auth()->user()->name;
         LogAction::create([
             'action' => "Atualização",
-            'description' => "O usuário: $user atualizou o imovel: $immobile->name"
+            'description' => "O usuário: $user atualizou o imovel: $immobile->title"
         ]);
     }
 
@@ -57,7 +57,7 @@ class ImmobileObserver
         $user = auth()->user()->name;
         LogAction::create([
             'action' => "Remoção",
-            'description' => "O usuário: $user removeu o imovel: $immobile->name"
+            'description' => "O usuário: $user removeu o imovel: $immobile->title"
         ]);
     }
 
