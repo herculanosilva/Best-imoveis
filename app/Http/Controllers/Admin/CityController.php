@@ -106,15 +106,15 @@ class CityController extends Controller
         return redirect()->route('admin.city.index');
     }
 
-    public function export(Request $request)
-    {
-        return Excel::download(new CitiesExport($request->search), 'Cidades.xlsx');
-    }
+    // public function export(Request $request)
+    // {
+    //     return Excel::download(new CitiesExport($request->search), 'Cidades.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $cities = City::all();
-        $pdf = PDF::loadView('admin.city.pdf', ['cities' => $cities]);
-        return $pdf->download('Cidades.pdf');
-    }
+    // public function exporttopdf()
+    // {
+    //     $cities = City::all();
+    //     $pdf = PDF::loadView('admin.city.pdf', ['cities' => $cities]);
+    //     return $pdf->download('Cidades.pdf');
+    // }
 }

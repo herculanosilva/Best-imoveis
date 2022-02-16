@@ -33,7 +33,7 @@ class ImmobileController extends Controller
         //                 ->orderBy('title','asc')
         //                 ->get();
 
-        #join - para ordenar por dao de uma tabela relacionada
+        #join - para ordenar por dado de uma tabela relacionada
         $immobiles = Immobile::join('cities','cities.id','=','immobiles.city_id')
                             ->join('addresses','addresses.immobile_id','=','immobiles.id')
                             ->orderBy('cities.name','asc')
@@ -51,13 +51,15 @@ class ImmobileController extends Controller
         if($request->title){
             $immobiles->where('title','like',"%$title%");
         }
+        // filtro
+        $filters = $request->except('_token');
 
         // pegando os dados retornados a parti da execução da query | withQueryString tudo que ja estava no link vai ser mantido
         $immobiles = $immobiles->paginate(env('PAGINATION'))->withQueryString();
 
         $cities = City::orderBy('name')->get();
 
-        return view('admin.immobile.index', compact('immobiles','cities','title','city_id'));
+        return view('admin.immobile.index', compact('immobiles','cities','title','city_id','filters'));
     }
 
     /**
@@ -180,17 +182,17 @@ class ImmobileController extends Controller
         return redirect()->route('admin.immobile.index');
     }
 
-    public function export(Request $request){
-        return Excel::download(new ImmobilesExport($request->city_id, $request->title), 'Imoveis.xlsx');
-    }
+    // public function export(Request $request){
+    //     return Excel::download(new ImmobilesExport($request->city_id, $request->title), 'Imoveis.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $immobiles = Immobile::with(['proximity','type','finality','address','city'])->get();
+    // public function exporttopdf()
+    // {
+    //     $immobiles = Immobile::with(['proximity','type','finality','address','city'])->get();
 
-        $pdf = PDF::loadView('admin.immobile.pdf', ['immobiles' => $immobiles]);
-        $pdf->setPaper('a4', 'landscape');
-        return $pdf->download('Imoveis.pdf');
-    }
+    //     $pdf = PDF::loadView('admin.immobile.pdf', ['immobiles' => $immobiles]);
+    //     $pdf->setPaper('a4', 'landscape');
+    //     return $pdf->download('Imoveis.pdf');
+    // }
 
 }

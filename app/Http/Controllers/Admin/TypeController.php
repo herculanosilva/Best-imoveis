@@ -102,14 +102,14 @@ class TypeController extends Controller
         return redirect()->route('admin.type.index');
     }
 
-    public function export(Request $request){
-        return Excel::download(new TypiesExport($request->search), 'Tipo.xlsx');
-    }
+    // public function export(Request $request){
+    //     return Excel::download(new TypiesExport($request->search), 'Tipo.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $typies = Type::all();
-        $pdf = PDF::loadView('admin.type.pdf', ['typies' => $typies]);
-        return $pdf->download('Tipos.pdf');
-    }
+    // public function exporttopdf()
+    // {
+    //     $typies = Type::all();
+    //     $pdf = PDF::loadView('admin.type.pdf', ['typies' => $typies]);
+    //     return $pdf->download('Tipos.pdf');
+    // }
 }

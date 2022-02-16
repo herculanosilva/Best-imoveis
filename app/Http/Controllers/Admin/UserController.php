@@ -120,14 +120,24 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    public function export(Request $request){
-        return Excel::download(new UsersExport($request->search), 'Usuarios.xlsx');
-    }
+    // public function export(Request $request){
+    //     return Excel::download(new UsersExport($request->search), 'Usuarios.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $users = User::all();
-        $pdf = PDF::loadView('admin.user.pdf', ['users' => $users]);
-        return $pdf->download('Usuarios.pdf');
-    }
+    // public function exporttopdf($search)
+    // {
+
+    //     if ($search == null){
+    //         return User::all();
+    //     }else{
+    //         $search =  User::where('name','ILIKE', "%{$search}%")
+    //                    ->orWhere('email','ILIKE', "%{$search}%")
+    //                    ->get();
+    //     }
+
+    //     $users = $search;
+    //     $pdf = PDF::loadView('admin.user.pdf', compact('users'));
+    //     $pdf->setPaper('a4', 'portrait');
+    //     return $pdf->download('Usuarios.pdf');
+    // }
 }

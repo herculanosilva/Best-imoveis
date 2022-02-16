@@ -36,18 +36,18 @@ class ActionLogController extends Controller
 
     }
 
-    public function export(Request $request){
-        return Excel::download(new ActionLogExport($request->search), 'Log de ação.xlsx');
-    }
+    // public function export(Request $request){
+    //     return Excel::download(new ActionLogExport($request->search), 'Log de ação.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $logs = LogAction::all();
-        $title = 'Lista de logs de ação';
-        $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs], ['title' => $title]);
+    // public function exporttopdf()
+    // {
+    //     $logs = LogAction::all();
+    //     $title = 'Lista de logs de ação';
+    //     $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs], ['title' => $title]);
 
-        return $pdf->download('Logs de ação.pdf');
-    }
+    //     return $pdf->download('Logs de ação.pdf');
+    // }
 
 }
 

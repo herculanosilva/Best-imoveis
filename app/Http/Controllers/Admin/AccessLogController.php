@@ -38,16 +38,16 @@ class AccessLogController extends Controller
     }
 
 
-    public function export(Request $request){
-        return Excel::download(new AccessLogExport($request->search), 'Log de acesso.xlsx');
-    }
+    // public function export(Request $request){
+    //     return Excel::download(new AccessLogExport($request->search), 'Log de acesso.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $logs = LogAccess::all();
-        $title = 'Lista de logs de acesso';
-        $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs], ['title' => $title]);
+    // public function exporttopdf()
+    // {
+    //     $logs = LogAccess::all();
+    //     $title = 'Lista de logs de acesso';
+    //     $pdf = PDF::loadView('admin.logs.pdf', ['logs' => $logs], ['title' => $title]);
 
-        return $pdf->download('Logs de acesso.pdf');
-    }
+    //     return $pdf->download('Logs de acesso.pdf');
+    // }
 }
