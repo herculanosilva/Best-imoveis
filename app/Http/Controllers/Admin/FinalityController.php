@@ -102,14 +102,14 @@ class FinalityController extends Controller
         return redirect()->route('admin.finality.index');
     }
 
-    public function export(Request $request){
-        return Excel::download(new FinalitiesExport($request->search), 'Finalidade.xlsx');
-    }
+    // public function export(Request $request){
+    //     return Excel::download(new FinalitiesExport($request->search), 'Finalidade.xlsx');
+    // }
 
-    public function exporttopdf()
-    {
-        $finalities = Finality::all();
-        $pdf = PDF::loadView('admin.finality.pdf', ['finalities' => $finalities]);
-        return $pdf->download('Finalidades.pdf');
-    }
+    // public function exporttopdf()
+    // {
+    //     $finalities = Finality::all();
+    //     $pdf = PDF::loadView('admin.finality.pdf', ['finalities' => $finalities]);
+    //     return $pdf->download('Finalidades.pdf');
+    // }
 }
